@@ -1,6 +1,6 @@
 {
   "benchmark_version": "v0.2.0-day10",
-  "generated_at": "2026-09-25T04:48:32Z",
+  "generated_at": "2026-09-26T01:20:01Z",
   "environment": {
     "os": "windows",
     "architecture": "amd64",
@@ -49,9 +49,10 @@
           "is_stable": true,
           "final_classification": "ALLOWED_BASELINE",
           "latency_sample_count": 100,
-          "latency_p95_ms": 1.074,
+          "latency_p50_ms": 4.42,
+          "latency_p95_ms": 24.273,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.219491395018945
+          "standard_deviation_ms": 8.577581300086639
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -81,9 +82,9 @@
           "is_stable": true,
           "final_classification": "ALLOWED_BASELINE",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.503,
+          "latency_p95_ms": 1.001,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.005542306871815
+          "standard_deviation_ms": 0.4981590362058438
         }
       }
     },
@@ -116,8 +117,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.667,
+          "latency_p95_ms": 2.703,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4134089475198934
+          "standard_deviation_ms": 1.4605222744766422
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -147,8 +150,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.943,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.00034920448266
+          "standard_deviation_ms": 1.1018775023576897
         }
       }
     },
@@ -181,8 +185,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 1.641,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.05187763769611424
+          "standard_deviation_ms": 1.076177316132233
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -212,9 +217,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 5.186,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.1753285389366391
+          "standard_deviation_ms": 2.3241513018386697
         }
       }
     },
@@ -247,9 +252,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.997,
+          "latency_p95_ms": 7.571,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.7644349553086824
+          "standard_deviation_ms": 4.073659566066121
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -279,8 +284,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 5.52,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.002474699295335
+          "standard_deviation_ms": 5.240021766282189
         }
       }
     },
@@ -313,9 +319,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.516,
+          "latency_p95_ms": 6.242,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.3724170080417755
+          "standard_deviation_ms": 6.7362713183064695
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -345,9 +351,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
+          "latency_p95_ms": 1.034,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0085440501089187
+          "standard_deviation_ms": 2.3711498298411167
         }
       }
     },
@@ -380,8 +386,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 9.526,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.18838284117319404
+          "standard_deviation_ms": 2.83425463586268
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -411,9 +418,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.014,
+          "latency_p95_ms": 10.003,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.08992683614242114
+          "standard_deviation_ms": 2.5737426926716678
         }
       }
     },
@@ -446,9 +453,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
+          "latency_p95_ms": 2.088,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0095715925104272
+          "standard_deviation_ms": 2.0232860217123445
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -478,8 +485,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.003,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.021864209287233
+          "standard_deviation_ms": 2.4363024867966865
         }
       }
     },
@@ -512,9 +520,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
+          "latency_p95_ms": 10.028,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.6755057223363033
+          "standard_deviation_ms": 2.562264506074833
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -544,8 +552,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 9.975,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.5591486720674095
+          "standard_deviation_ms": 2.414629925427016
         }
       }
     },
@@ -578,9 +587,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 10.003,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.18920654605670245
+          "standard_deviation_ms": 2.403339527920399
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -610,8 +619,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.051,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0023
+          "standard_deviation_ms": 1.9776754421912777
         }
       }
     },
@@ -644,8 +654,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 1.515,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.411838130476248
+          "standard_deviation_ms": 2.2007541172851353
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -675,8 +686,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.529,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.11302730518406479
+          "standard_deviation_ms": 1.4124785955650065
         }
       }
     },
@@ -709,8 +721,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.022,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0098221083463415
+          "standard_deviation_ms": 2.5957062698801168
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -741,7 +754,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0021
+          "standard_deviation_ms": 1.7414853900151914
         }
       }
     },
@@ -774,8 +787,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.516,
+          "latency_p95_ms": 10.026,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4244220352284798
+          "standard_deviation_ms": 2.535510613388565
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -805,8 +820,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.997,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4712904244337022
+          "standard_deviation_ms": 1.2633386715726347
         }
       }
     },
@@ -839,8 +855,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 2.61,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.0052
+          "standard_deviation_ms": 1.9032685884015315
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -870,9 +887,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.513,
+          "latency_p95_ms": 1.036,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0067791059019888
+          "standard_deviation_ms": 1.1739424470947921
         }
       }
     },
@@ -905,7 +922,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p50_ms": 0.996,
+          "latency_p95_ms": 1.705,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0163652697308934
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -935,8 +955,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.998,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.1955950720806182
+          "standard_deviation_ms": 1.0489125703327329
         }
       }
     },
@@ -969,8 +990,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.862,
+          "latency_p95_ms": 1.504,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.2713667540616804
+          "standard_deviation_ms": 0.5842647174877239
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1000,9 +1023,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.48,
+          "latency_p95_ms": 1,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.1210492995820006
+          "standard_deviation_ms": 1.0409936035957534
         }
       }
     },
@@ -1035,8 +1058,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.998,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.013600000000000001
+          "standard_deviation_ms": 1.9779115941678065
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1066,7 +1090,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0270917818694874
         }
       }
     },
@@ -1099,8 +1124,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.046,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.5684469464330782
+          "standard_deviation_ms": 3.0378713604141043
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1130,7 +1156,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.3584189987487718
         }
       }
     },
@@ -1163,8 +1190,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.022,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.10136136922771502
+          "standard_deviation_ms": 2.6163488395861974
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1194,9 +1222,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.3349964124638298
+          "standard_deviation_ms": 1.0060114883774811
         }
       }
     },
@@ -1229,9 +1256,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.513,
+          "latency_p95_ms": 10.017,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.9880947434943737
+          "standard_deviation_ms": 2.746398537662873
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1261,8 +1288,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.996,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0010770787385743
+          "standard_deviation_ms": 1.7265784549831846
         }
       }
     },
@@ -1295,8 +1323,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 7.89,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0022
+          "standard_deviation_ms": 2.2928759049620533
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1326,8 +1355,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 2.534,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.002
+          "standard_deviation_ms": 1.276040604899991
         }
       }
     },
@@ -1360,9 +1390,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 4.529,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.1762133222815317
+          "standard_deviation_ms": 2.2450038299218193
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1392,8 +1422,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.997,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.10082458013597655
+          "standard_deviation_ms": 1.0626584260259926
         }
       }
     },
@@ -1426,8 +1457,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.996,
+          "latency_p95_ms": 10.039,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4165793012276675
+          "standard_deviation_ms": 9.756559519884584
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1457,7 +1490,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p95_ms": 0.85,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.866629536442385
         }
       }
     },
@@ -1490,9 +1525,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 10.022,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.2474791492084319
+          "standard_deviation_ms": 2.8856464039774306
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1522,9 +1557,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.2163469424652016
+          "standard_deviation_ms": 1.452469415036393
         }
       }
     },
@@ -1557,9 +1591,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 5.038,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0156695607163073
+          "standard_deviation_ms": 2.028779137756986
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1590,7 +1624,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.7192098728688414
+          "standard_deviation_ms": 1.426130126346375
         }
       }
     },
@@ -1623,9 +1657,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.017,
+          "latency_p95_ms": 3.526,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.9775163245185545
+          "standard_deviation_ms": 2.087490664686076
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1655,8 +1689,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 2.518,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.17085323934283306
+          "standard_deviation_ms": 1.795992714884777
         }
       }
     },
@@ -1689,8 +1724,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.997,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.71509471950347
+          "standard_deviation_ms": 1.8531328760133787
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1721,7 +1757,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4100781213045672
+          "standard_deviation_ms": 1.1284192662322106
         }
       }
     },
@@ -1754,9 +1790,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 10.016,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0323216014832244
+          "standard_deviation_ms": 2.5893939375924253
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1786,9 +1822,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.35,
+          "latency_p95_ms": 0.997,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.015545353765924
+          "standard_deviation_ms": 1.7404500168089
         }
       }
     },
@@ -1821,7 +1857,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p95_ms": 10.022,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 2.396563129954766
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1851,9 +1889,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.516,
+          "latency_p95_ms": 0.996,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0154690338394712
+          "standard_deviation_ms": 1.6822494901383407
         }
       }
     },
@@ -1886,7 +1924,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p95_ms": 2.001,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 2.044510469056299
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1916,8 +1956,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.504,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.421777280538181
+          "standard_deviation_ms": 1.4948996096154024
         }
       }
     },
@@ -1950,8 +1991,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 3.025,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4182656306527734
+          "standard_deviation_ms": 2.0135861730662623
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -1982,7 +2024,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0095513747114697
+          "standard_deviation_ms": 1.9820620953691108
         }
       }
     },
@@ -2015,9 +2057,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.519,
+          "latency_p95_ms": 1,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.22187742179642866
+          "standard_deviation_ms": 1.4826682394189938
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2047,9 +2089,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 0.52,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.5721731611703195
+          "standard_deviation_ms": 1.7287149403677013
         }
       }
     },
@@ -2082,8 +2124,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.6,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0090493658024182
+          "standard_deviation_ms": 1.0240661801432227
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2113,8 +2156,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.995,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4126811817293106
+          "standard_deviation_ms": 1.4998127014040552
         }
       }
     },
@@ -2147,9 +2191,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
+          "latency_p50_ms": 0.699,
+          "latency_p95_ms": 1.411,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.13219110897836245
+          "standard_deviation_ms": 0.6831495045416892
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2179,8 +2224,10 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.26,
+          "latency_p95_ms": 1.002,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0002
+          "standard_deviation_ms": 0.45357801540705867
         }
       }
     },
@@ -2213,9 +2260,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.517,
+          "latency_p50_ms": 0.643,
+          "latency_p95_ms": 1.031,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0087210834226745
+          "standard_deviation_ms": 0.49651374287998007
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2245,8 +2293,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 1.992,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.10162503071924193
+          "standard_deviation_ms": 1.2255393123276812
         }
       }
     },
@@ -2279,7 +2328,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p95_ms": 10.046,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 2.8991778412424987
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2309,9 +2360,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.53,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.23861859089180773
+          "standard_deviation_ms": 1.5894202972191216
         }
       }
     },
@@ -2344,9 +2394,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.264,
+          "latency_p95_ms": 1.013,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.466650398360189
+          "standard_deviation_ms": 2.214924658408101
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2376,7 +2426,8 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.7232129955054276
         }
       }
     },
@@ -2409,8 +2460,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.004,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.002383434166242
+          "standard_deviation_ms": 2.380394733075278
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2440,7 +2492,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p99_ms": null
+          "latency_p95_ms": 0.999,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.45174646180969225
         }
       }
     },
@@ -2473,8 +2527,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.992,
+          "latency_p95_ms": 2.99,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.412729498330995
+          "standard_deviation_ms": 1.1150168590472505
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2504,8 +2560,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.998,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.09982856213620338
+          "standard_deviation_ms": 0.44187750256459896
         }
       }
     },
@@ -2538,8 +2595,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.998,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0002376717055752
+          "standard_deviation_ms": 0.4928315911878288
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2569,8 +2627,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 0.999,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4073506917953924
+          "standard_deviation_ms": 0.414382462651999
         }
       }
     },
@@ -2603,8 +2662,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.996,
+          "latency_p95_ms": 1.335,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4089532532337543
+          "standard_deviation_ms": 0.42119849443839624
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2634,9 +2695,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.516,
+          "latency_p95_ms": 7.633,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0125790224306777
+          "standard_deviation_ms": 2.3286289409318637
         }
       }
     },
@@ -2669,9 +2730,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.515,
+          "latency_p95_ms": 5.507,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0261965599713192
+          "standard_deviation_ms": 2.242744361065458
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2701,8 +2762,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 1.018,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0025
+          "standard_deviation_ms": 1.8610696727604497
         }
       }
     },
@@ -2735,9 +2797,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.516,
+          "latency_p95_ms": 10.049,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0233434137791928
+          "standard_deviation_ms": 2.946014854053358
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2768,7 +2830,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.4148601200090134
+          "standard_deviation_ms": 1.98139942984903
         }
       }
     },
@@ -2802,7 +2864,7 @@
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.6177278892435414
+          "standard_deviation_ms": 2.2056981829668887
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2833,7 +2895,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.0737
+          "standard_deviation_ms": 1.72371601061559
         }
       }
     },
@@ -2866,9 +2928,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.547,
+          "latency_p95_ms": 10.004,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.8134535986592704
+          "standard_deviation_ms": 2.7129391467632304
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2898,9 +2960,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.512,
+          "latency_p95_ms": 0.041,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.21000925905513998
+          "standard_deviation_ms": 2.1561964857713054
         }
       }
     },
@@ -2933,8 +2995,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 7.028,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.15680793727333828
+          "standard_deviation_ms": 2.3850723775308387
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -2965,7 +3028,7 @@
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.008937555537723891
+          "standard_deviation_ms": 1.4102141573877953
         }
       }
     },
@@ -2998,8 +3061,9 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 10.029,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0020489475735872
+          "standard_deviation_ms": 2.5824253971251854
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -3029,9 +3093,10 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.521,
+          "latency_p50_ms": 0.506,
+          "latency_p95_ms": 1,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.0158723098396718
+          "standard_deviation_ms": 0.4932827749482096
         }
       }
     },
@@ -3064,8 +3129,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.996,
+          "latency_p95_ms": 1.996,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.39865456858100223
+          "standard_deviation_ms": 3.503802825848544
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -3095,9 +3162,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.514,
+          "latency_p95_ms": 0.999,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.14785391507166865
+          "standard_deviation_ms": 0.5029407093999424
         }
       }
     },
@@ -3130,8 +3197,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
+          "latency_p50_ms": 0.993,
+          "latency_p95_ms": 2.981,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.8395160356666299
+          "standard_deviation_ms": 1.1734946447309085
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -3161,9 +3230,10 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.516,
+          "latency_p50_ms": 0.507,
+          "latency_p95_ms": 1.984,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.14243209120861985
+          "standard_deviation_ms": 1.1349249285456477
         }
       }
     },
@@ -3196,9 +3266,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p95_ms": 0.518,
+          "latency_p50_ms": 0.677,
+          "latency_p95_ms": 1.225,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 1.015328850295521
+          "standard_deviation_ms": 0.43599183849279016
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -3228,8 +3299,9 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
+          "latency_p95_ms": 1.063,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.007099999999999999
+          "standard_deviation_ms": 1.7558735401186751
         }
       }
     },
@@ -3262,10 +3334,10 @@
           "is_stable": true,
           "final_classification": "BLOCKED",
           "latency_sample_count": 100,
-          "latency_p50_ms": 3.324,
-          "latency_p95_ms": 24.383,
+          "latency_p50_ms": 11.362,
+          "latency_p95_ms": 18.745,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 51.45599925587498
+          "standard_deviation_ms": 4.996329483680489
         },
         "conventional_oidc": {
           "state": "NOT_IMPLEMENTED",
@@ -3295,10 +3367,10 @@
           "is_stable": true,
           "final_classification": "BYPASSED",
           "latency_sample_count": 100,
-          "latency_p50_ms": 1.609,
-          "latency_p95_ms": 3.407,
+          "latency_p50_ms": 4.338,
+          "latency_p95_ms": 10.106,
           "latency_p99_ms": null,
-          "standard_deviation_ms": 0.8977638605969498
+          "standard_deviation_ms": 4.903645024918102
         }
       }
     }

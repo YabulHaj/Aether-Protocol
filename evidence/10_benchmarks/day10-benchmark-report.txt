@@ -1,0 +1,363 @@
+Aether Protocol Day 10 Benchmark Report
+=======================================
+
+Generated At : 2026-09-25T04:48:32Z
+Environment  : windows / amd64 / go1.27.1
+Scenarios    : 50
+Iterations   : 100 per scenario (Warmup: 5)
+Limitations  : Local loopback execution using httptest. Results are local loopback measurements and do not represent production network or remote identity-provider latency.
+
+--- Aether Security Outcomes (Aggregated) ---
+ALLOWED_BASELINE: 1
+BLOCKED: 49
+
+--- Scenario Results ---
+[DAY8-001] baseline (Expected: HTTP 200, Delta 1)
+  weak_passthrough     -> ALLOWED_BASELINE | P50:   0.00ms | P95:   0.50ms | StdDev:  1.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> ALLOWED_BASELINE | P50:   0.00ms | P95:   1.07ms | StdDev:  1.22ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-002] method (Expected: HTTP 405, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[405:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-003] auth (Expected: HTTP 401, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.05ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  0.18ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-004] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   1.00ms | StdDev:  1.76ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-005] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  0.37ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  1.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-006] envelope (Expected: HTTP 400, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.01ms | StdDev:  0.09ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.19ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-007] envelope (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.51ms | StdDev:  1.01ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.02ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-008] envelope (Expected: HTTP 400, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.51ms | StdDev:  0.68ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.56ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-009] envelope (Expected: HTTP 400, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  0.19ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-010] envelope (Expected: HTTP 400, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.11ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-011] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.01ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-012] envelope (Expected: HTTP 400, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.47ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.42ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-013] envelope (Expected: HTTP 400, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.01ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  1.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[DAY8-014] revocation (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.20ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-015] revocation (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.27ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.48ms | StdDev:  0.12ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-016] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.01ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-017] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.57ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-018] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.10ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  0.33ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-019] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.51ms | StdDev:  0.99ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[DAY8-020] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0021] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  0.18ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.10ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0022] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.42ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0023] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  0.25ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  1.22ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0024] envelope (Expected: HTTP 400, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.02ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.72ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0025] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.02ms | StdDev:  1.98ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.17ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0026] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.72ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0027] envelope (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.03ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.35ms | StdDev:  1.02ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0028] freshness (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  1.02ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0029] freshness (Expected: HTTP 400, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[400:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.42ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0030] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.42ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0031] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  0.22ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  0.57ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0032] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.01ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0033] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.51ms | StdDev:  0.13ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0034] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.01ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.10ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0035] auth (Expected: HTTP 401, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[401:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.53ms | StdDev:  0.24ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0036] method (Expected: HTTP 405, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.26ms | StdDev:  1.47ms
+    Status: map[405:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0037] method (Expected: HTTP 405, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[405:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0038] method (Expected: HTTP 405, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.10ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[405:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0039] method (Expected: HTTP 404, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[404:100] | Deltas: map[0:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0040] method (Expected: HTTP 404, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  1.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[404:100] | Deltas: map[0:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0041] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.03ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0042] policy (Expected: HTTP 403, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.02ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  1.41ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0043] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.62ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.07ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0044] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.55ms | StdDev:  0.81ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  0.21ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0045] policy (Expected: HTTP 403, Delta 0)
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.16ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0046] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  1.00ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  1.02ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0047] policy (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.40ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.51ms | StdDev:  0.15ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0048] revocation (Expected: HTTP 403, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.52ms | StdDev:  0.14ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.00ms | StdDev:  0.84ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+
+[AET-ATT-0049] revocation (Expected: HTTP 403, Delta 0)
+  aether_zero_trust    -> BLOCKED          | P50:   0.00ms | P95:   0.52ms | StdDev:  1.02ms
+    Status: map[403:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  weak_passthrough     -> BYPASSED         | P50:   0.00ms | P95:   0.00ms | StdDev:  0.01ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+
+[AET-ATT-0050] envelope (Expected: HTTP 413, Delta 0)
+  weak_passthrough     -> BYPASSED         | P50:   1.61ms | P95:   3.41ms | StdDev:  0.90ms
+    Status: map[200:100] | Deltas: map[1:100] | EvCounts: map[0:100] | Stability: All 100 observed iterations produced the same recorded outcome.
+  conventional_oidc    -> NOT_IMPLEMENTED
+  aether_zero_trust    -> BLOCKED          | P50:   3.32ms | P95:  24.38ms | StdDev: 51.46ms
+    Status: map[413:100] | Deltas: map[0:100] | EvCounts: map[1:100] | Stability: All 100 observed iterations produced the same recorded outcome.

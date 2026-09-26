@@ -1,0 +1,3306 @@
+{
+  "benchmark_version": "v0.2.0-day10",
+  "generated_at": "2026-09-25T04:48:32Z",
+  "environment": {
+    "os": "windows",
+    "architecture": "amd64",
+    "go_version": "go1.27.1",
+    "execution_type": "local_loopback",
+    "uncertainty_limitations": "Local loopback execution using httptest. Results are local loopback measurements and do not represent production network or remote identity-provider latency."
+  },
+  "execution_parameters": {
+    "iterations_per_scenario": 100,
+    "warmup_cycles": 5
+  },
+  "summary": {
+    "total_scenarios": 50,
+    "aether_outcomes": {
+      "ALLOWED_BASELINE": 1,
+      "BLOCKED": 49
+    }
+  },
+  "scenarios": [
+    {
+      "scenario_id": "DAY8-001",
+      "category": "baseline",
+      "expected_status": 200,
+      "expected_backend_delta": 1,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "ALLOWED_BASELINE": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "ALLOWED_BASELINE",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 1.074,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.219491395018945
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "ALLOWED_BASELINE": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "ALLOWED_BASELINE",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.503,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.005542306871815
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-002",
+      "category": "method",
+      "expected_status": 405,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "405": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4134089475198934
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.00034920448266
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-003",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.05187763769611424
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.1753285389366391
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-004",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.997,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.7644349553086824
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.002474699295335
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-005",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.516,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.3724170080417755
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0085440501089187
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-006",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.18838284117319404
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.014,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.08992683614242114
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-007",
+      "category": "envelope",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0095715925104272
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.021864209287233
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-008",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.6755057223363033
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.5591486720674095
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-009",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.18920654605670245
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0023
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-010",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.411838130476248
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.11302730518406479
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-011",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0098221083463415
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0021
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-012",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4244220352284798
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4712904244337022
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-013",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.0052
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.513,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0067791059019888
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-014",
+      "category": "revocation",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.1955950720806182
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-015",
+      "category": "revocation",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.2713667540616804
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.48,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.1210492995820006
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-016",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.013600000000000001
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-017",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.5684469464330782
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-018",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.10136136922771502
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.3349964124638298
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-019",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.513,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.9880947434943737
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0010770787385743
+        }
+      }
+    },
+    {
+      "scenario_id": "DAY8-020",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0022
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.002
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0021",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.1762133222815317
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.10082458013597655
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0022",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4165793012276675
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0023",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.2474791492084319
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.2163469424652016
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0024",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0156695607163073
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.7192098728688414
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0025",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.017,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.9775163245185545
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.17085323934283306
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0026",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.71509471950347
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4100781213045672
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0027",
+      "category": "envelope",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0323216014832244
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.35,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.015545353765924
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0028",
+      "category": "freshness",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.516,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0154690338394712
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0029",
+      "category": "freshness",
+      "expected_status": 400,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "400": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.421777280538181
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0030",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4182656306527734
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0095513747114697
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0031",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.519,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.22187742179642866
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.5721731611703195
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0032",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0090493658024182
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4126811817293106
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0033",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.13219110897836245
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0002
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0034",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.517,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0087210834226745
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.10162503071924193
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0035",
+      "category": "auth",
+      "expected_status": 401,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "401": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.53,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.23861859089180773
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0036",
+      "category": "method",
+      "expected_status": 405,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "405": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.264,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.466650398360189
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0037",
+      "category": "method",
+      "expected_status": 405,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "405": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.002383434166242
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0038",
+      "category": "method",
+      "expected_status": 405,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "405": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.412729498330995
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.09982856213620338
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0039",
+      "category": "method",
+      "expected_status": 404,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "404": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0002376717055752
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4073506917953924
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0040",
+      "category": "method",
+      "expected_status": 404,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "404": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4089532532337543
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.516,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0125790224306777
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0041",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.515,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0261965599713192
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0025
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0042",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.516,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0233434137791928
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.4148601200090134
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0043",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.6177278892435414
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.0737
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0044",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.547,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.8134535986592704
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.512,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.21000925905513998
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0045",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.15680793727333828
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.008937555537723891
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0046",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0020489475735872
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.521,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.0158723098396718
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0047",
+      "category": "policy",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.39865456858100223
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.514,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.14785391507166865
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0048",
+      "category": "revocation",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.8395160356666299
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.516,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.14243209120861985
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0049",
+      "category": "revocation",
+      "expected_status": 403,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "403": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p95_ms": 0.518,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 1.015328850295521
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.007099999999999999
+        }
+      }
+    },
+    {
+      "scenario_id": "AET-ATT-0050",
+      "category": "envelope",
+      "expected_status": 413,
+      "expected_backend_delta": 0,
+      "baselines": {
+        "aether_zero_trust": {
+          "state": "MEASURED",
+          "description": "The Aether zero-trust enforcement pipeline executing full identity, policy, and evidence validation.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "413": 100
+          },
+          "backend_delta_counts": {
+            "0": 100
+          },
+          "outcome_counts": {
+            "BLOCKED": 100
+          },
+          "evidence_record_counts": {
+            "1": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BLOCKED",
+          "latency_sample_count": 100,
+          "latency_p50_ms": 3.324,
+          "latency_p95_ms": 24.383,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 51.45599925587498
+        },
+        "conventional_oidc": {
+          "state": "NOT_IMPLEMENTED",
+          "description": "A conventional token-based authorization baseline (e.g., OAuth/OIDC/IAM).",
+          "latency_p99_ms": null
+        },
+        "weak_passthrough": {
+          "state": "MEASURED",
+          "description": "An intentionally weak no-enforcement HTTP control. Request counter represents requests reaching the weak handler, not Aether backend hits.",
+          "iterations_requested": 100,
+          "iterations_completed": 100,
+          "status_counts": {
+            "200": 100
+          },
+          "backend_delta_counts": {
+            "1": 100
+          },
+          "outcome_counts": {
+            "BYPASSED": 100
+          },
+          "evidence_record_counts": {
+            "0": 100
+          },
+          "evidence_hash_valid_counts": {
+            "true": 100
+          },
+          "is_stable": true,
+          "final_classification": "BYPASSED",
+          "latency_sample_count": 100,
+          "latency_p50_ms": 1.609,
+          "latency_p95_ms": 3.407,
+          "latency_p99_ms": null,
+          "standard_deviation_ms": 0.8977638605969498
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+﻿{
+    "run_id":  "20260922_225514",
+    "timestamp_utc":  "2026-09-22T22:55:14Z",
+    "repository":  "C:\\Users\\yabul\\Aether-Protocol",
+    "git_commit":  "ab3324f358ffbf2ee90d9600a93d846947a06808",
+    "git_branch":  "master",
+    "go_version":  "go version go1.27.1 windows/amd64",
+    "os":  "Microsoft Windows NT 10.0.19045.0",
+    "mode":  "Clean Local Reproduction",
+    "commands":  [
+                     "go test -count=1 ./...",
+                     "go test -count=1 -v ./cmd -run TestDay10Benchmark"
+                 ],
+    "results":  {
+                    "core_tests":  "PASS",
+                    "benchmark":  "PASS"
+                },
+    "artifacts":  [
+                      "core_tests.log",
+                      "benchmark_run.log"
+                  ]
+}

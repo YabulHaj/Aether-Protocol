@@ -1,0 +1,134 @@
+name: Break Aether — Security / Reproduction Report
+description: Found an unexpected authorization, enforcement, replay, revocation, evidence, or reproducibility result? Show us how to reproduce it.
+title: "[Break Aether] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Try to break Aether
+
+        Thank you for testing the authorization boundary.
+
+        A reproducible failure is valuable security research.
+
+        **Please do not publish passwords, API keys, tokens, private keys, credentials, personal data, or confidential information here.**
+
+        For sensitive vulnerability details, use [SECURITY.md](../../SECURITY.md).
+
+  - type: input
+    id: version
+    attributes:
+      label: Aether version / commit
+      description: "Which release, commit, or branch were you testing?"
+      placeholder: "Example: v0.1.0 / abc1234"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: result_type
+    attributes:
+      label: What did you find?
+      options:
+        - Unexpected authorization decision
+        - Unexpected enforcement behavior
+        - Replay / freshness issue
+        - Revocation issue
+        - Identity issue
+        - Policy boundary issue
+        - Evidence / integrity issue
+        - Reproducibility issue
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Can you reproduce it?
+      options:
+        - Yes — every time
+        - Yes — intermittently
+        - Not yet
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_tested
+    attributes:
+      label: What did you test?
+      description: "Tell us what you tried. Include the Attack Lab scenario, command, request, or security assumption."
+      placeholder: |
+        Example:
+        AET-ATT-0043
+        Changed the target resource from invoice/12345 to invoice/12346.
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: What happened?
+      description: "Describe the actual observed result."
+      placeholder: |
+        Example:
+        Aether returned HTTP 200 and the backend received the request.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened?
+      description: "Describe the security behavior you expected."
+      placeholder: |
+        Example:
+        The request should have been denied and the backend hit count should remain 0.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: "Give the smallest set of steps another person can use to reproduce the result."
+      placeholder: |
+        1. Start Aether in the documented mode.
+        2. Run the following request...
+        3. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Non-sensitive evidence
+      description: "Paste logs, HTTP responses, screenshots, or other evidence that is safe to publish."
+      placeholder: "Paste safe evidence here."
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: "OS, Go version, identity mode, and other relevant environment details."
+      placeholder: "Windows 10 · Go 1.27.x · mock identity"
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I have removed passwords, tokens, credentials, private keys, personal data, and confidential information.
+          required: true
+        - label: I understand that sensitive vulnerability details should be reported through SECURITY.md instead of being posted publicly.
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ### What happens next?
+
+        A reproducible report may become:
+
+        **finding → reproduction → regression test → fix → documented result**
+
+        Thank you for testing the boundary rather than simply trusting the claim.

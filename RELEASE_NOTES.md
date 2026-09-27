@@ -4,7 +4,7 @@
 
 **Aether v0.1.0-rc.1**
 
-> Draft release candidate — publication remains pending the final release gate.
+> Release candidate prepared for public release.
 
 ---
 

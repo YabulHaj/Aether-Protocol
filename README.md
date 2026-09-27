@@ -340,56 +340,258 @@ flowchart LR
 
 ### Requirements
 
-* Go
-* Git
-* A local development environment
+You need:
 
-Clone the repository:
+* Git
+* Go 1.27.1 or newer
+* Windows PowerShell, or an equivalent terminal
+
+Aether is currently designed for local development and security research.
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/YabulHaj/Aether-Protocol.git
 cd Aether-Protocol
 ```
 
-### Run the test suite
+### 2. Verify the repository builds and tests pass
+
+Run:
 
 ```bash
 go test ./...
-```
-
-### Build
-
-```bash
 go build ./...
 ```
 
-### Local development mode
+Both commands should complete without errors.
 
-Aether supports an explicit mock identity mode for local development.
+### 3. Start the protected demo backend
 
-**PowerShell:**
+Open **Terminal 1** in the Aether repository and run:
+
+```powershell
+go run ./tools/dummy-backend
+```
+
+You should see:
+
+```text
+Dummy backend listening on localhost:9090
+```
+
+Keep this terminal open. The dummy backend represents the protected upstream target and prints a `[BACKEND]` line whenever it receives a request.
+
+### 4. Start the Aether gateway
+
+Open **Terminal 2** in the Aether repository and run:
 
 ```powershell
 $env:AETHER_IDENTITY_MODE="mock"
 go run ./cmd
 ```
 
-The mock identity provider is intended for local development and testing.
+You should see the gateway listening on:
 
-It is **not a production identity configuration**.
+```text
+localhost:8080
+```
 
-### Benchmark / Attack Lab
+The mock identity provider is intended for local development and testing. It is **not a production identity configuration**.
 
-The benchmark harness can be executed with:
+### 5. Open the Live River UI
+
+Open this in a browser:
+
+```text
+http://localhost:8080/ui/
+```
+
+The UI displays real server-sent telemetry from Aether. It does not generate synthetic security events.
+
+When the gateway is unavailable, the UI reports **DISCONNECTED**. A successful connection reports **LIVE**.
+
+### 6. Send an authorized action
+
+Leave both terminals running and open a third PowerShell terminal in the repository.
+
+Run:
+
+```powershell
+$now = [DateTime]::UtcNow
+$body = @{
+  identity_ref    = "agent://finance-bot-01"
+  intent          = "summarize"
+  capability      = "read:invoices"
+  target_resource = "invoice/12345"
+  operation       = "GET"
+  audience        = "aether-gateway"
+  issued_at       = $now.AddMinutes(-1).ToString("o")
+  expiry          = $now.AddMinutes(5).ToString("o")
+  nonce_id        = ("demo-" + [guid]::NewGuid().ToString())
+  payload_hash    = "sha256:0000000000000000"
+} | ConvertTo-Json -Compress
+
+Invoke-WebRequest `
+  -Uri "http://localhost:8080/v1/action" `
+  -Method POST `
+  -Headers @{ Authorization = "Bearer mock-token-finance-bot" } `
+  -ContentType "application/json" `
+  -Body $body `
+  -UseBasicParsing
+```
+
+Expected behavior:
+
+* HTTP `200`
+* Aether returns the protected-data success response
+* The Live River shows `ALLOWED`
+* Terminal 1 records a `[BACKEND]` request
+
+The configured policy for this demonstration is:
+
+```text
+Identity:   agent://finance-bot-01
+Intent:     summarize
+Capability: read:invoices
+Target:     invoice/12345
+Operation:  GET
+Audience:   aether-gateway
+```
+
+### 7. Send a denied action and verify the enforcement boundary
+
+For a clean backend verification, stop the dummy backend with `Ctrl+C`, start it again, and confirm that the terminal shows only:
+
+```text
+Dummy backend listening on localhost:9090
+```
+
+Then run this **fresh request** in the PowerShell terminal:
+
+```powershell
+$now = [DateTime]::UtcNow
+$body = @{
+  identity_ref    = "agent://finance-bot-01"
+  intent          = "summarize"
+  capability      = "read:invoices"
+  target_resource = "invoice/99999"
+  operation       = "GET"
+  audience        = "aether-gateway"
+  issued_at       = $now.AddMinutes(-1).ToString("o")
+  expiry          = $now.AddMinutes(5).ToString("o")
+  nonce_id        = ("clean-deny-" + [guid]::NewGuid().ToString())
+  payload_hash    = "sha256:0000000000000000"
+} | ConvertTo-Json -Compress
+
+try {
+  $r = Invoke-WebRequest `
+    -Uri "http://localhost:8080/v1/action" `
+    -Method POST `
+    -Headers @{ Authorization = "Bearer mock-token-finance-bot" } `
+    -ContentType "application/json" `
+    -Body $body `
+    -UseBasicParsing
+
+  "HTTP $($r.StatusCode)"
+  $r.Content
+}
+catch {
+  if ($_.Exception.Response) {
+    "HTTP $([int]$_.Exception.Response.StatusCode)"
+    $reader = New-Object System.IO.StreamReader($_.Exception.Response.GetResponseStream())
+    $reader.ReadToEnd()
+    $reader.Dispose()
+  } else {
+    throw
+  }
+}
+```
+
+Expected behavior:
+
+* HTTP `403`
+* Aether reports a policy denial
+* The Live River shows `DENIED`
+* **No new `[BACKEND]` line appears in Terminal 1**
+
+This demonstrates the intended enforcement boundary: a request that violates the configured target policy is denied before it reaches the protected dummy backend.
+
+### 8. Run the Attack Lab / benchmark
+
+The benchmark is separate from the live demo and does **not** require the dummy backend or a running gateway. It uses local `httptest` execution.
+
+Run:
 
 ```powershell
 go test -count=1 -v ./cmd -run TestDay10Benchmark
 ```
 
-Generated results should be treated according to the repository's evidence classification and methodology.
+The current benchmark configuration executes 50 scenarios, 100 measured iterations per scenario, and 5 warmup cycles.
+
+The test writes:
+
+```text
+evidence/10_benchmarks/day10-benchmark-results.json
+evidence/10_benchmarks/day10-benchmark-report.txt
+```
+
+The benchmark reports identify the environment as local loopback and state that the measurements do not represent production network or remote identity-provider latency.
+
+### 9. Reproducibility and evidence
+
+For research purposes, inspect both the implementation and the generated evidence.
+
+The important enforcement question is not only:
+
+```text
+Did Aether return DENY?
+```
+
+It is also:
+
+```text
+Did the unauthorized request reach the target?
+```
+
+UI output is visualization. The server-side implementation, automated tests, benchmark artifacts, and structured evidence are the authoritative research record.
+
+### 10. Security boundary
+
+Aether is intentionally narrow.
+
+It does not claim to:
+
+* secure an AI model itself
+* determine whether a model's reasoning is correct
+* replace workload identity systems
+* replace general-purpose IAM
+* eliminate application vulnerabilities
+* eliminate prompt injection
+* guarantee agent safety
+* guarantee production security
+
+Aether instead focuses on the authorization and enforcement boundary surrounding autonomous software actions.
+
+### 11. Current benchmark limitation
+
+Benchmark results are **creator-controlled** and are not independent security validation.
+
+They do not establish universal attack coverage or prove the absence of undiscovered vulnerabilities.
+
+Independent reproduction and external technical review remain separate research objectives.
+
+### 12. Research principle
+
+```text
+No action without authorization.
+No authorization without context.
+No security claim without evidence.
+```
+
+The goal is to make authorization behavior measurable, inspectable, and reproducible.
 
 ---
-
 ## Security Boundary
 
 Aether is intentionally narrow.

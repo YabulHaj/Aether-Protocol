@@ -718,8 +718,8 @@ function setConnection(kind){
     document.getElementById('streamLabel').textContent='REAL SSE';
   }else if(kind==='offline'){
     el.classList.add('offline');
-    text.textContent='OFFLINE';
-    document.getElementById('streamLabel').textContent='OFFLINE';
+    text.textContent='DISCONNECTED';
+    document.getElementById('streamLabel').textContent='DISCONNECTED';
   }else{
     text.textContent=kind.toUpperCase();
     document.getElementById('streamLabel').textContent='CONNECTING';
@@ -730,7 +730,7 @@ function scheduleReconnect(){
   if(reconnectTimer)return;
 
   state.attempts++;
-  setConnection(state.attempts>1?'reconnecting':'offline');
+  setConnection('offline');
 
   const delay=BACKOFF[
     Math.min(state.attempts-1,BACKOFF.length-1)
@@ -752,7 +752,7 @@ function connect(retry=false){
 
   if(!retry) state.attempts=0;
 
-  setConnection(retry?'reconnecting':'connecting');
+  setConnection(retry?'offline':'connecting');
 
   try{
     es=new EventSource(GATEWAY);

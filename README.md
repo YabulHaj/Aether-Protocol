@@ -1,25 +1,60 @@
 # Aether
 
-### Authorization Control for Autonomous Software Agents
+### Open-Source Authorization Boundary for AI Agents
+
+**Identity is not authority.**
 
 **IDENTITY → INTENT → AUTHORITY → ACTION → EVIDENCE**
 
-Aether is an open-source authorization control and research platform for autonomous software agents.
+Aether is an open-source authorization boundary for autonomous software agents.
 
-It sits above workload identity and evaluates whether a **specific action**, by a **specific workload**, under a **specific context**, is authorized, enforceable, auditable, observable, and revocable.
+It evaluates whether a **specific action**, by a **specific workload**, under a **specific context**, is authorized, enforceable, auditable, observable, and revocable.
 
-> **Authentication answers: “Who are you?”**
-> **Aether asks: “What are you allowed to do, here, now, and can that decision be enforced and evidenced?”**
+> **Authentication answers:** “Who are you?”
+>
+> **Aether asks:** “What are you allowed to do, here, now, and can that decision be enforced and evidenced?”
 
 ---
 
-## Why Aether?
+## See the Proof
 
-AI agents are increasingly able to call APIs, access data, execute tools, modify systems, and trigger workflows.
+Aether is designed to be **run, inspected, and challenged**.
 
-A valid identity or credential does not by itself establish that every requested action is authorized.
+**Creator-controlled launch-candidate verification includes:**
 
-Aether focuses on the control boundary between an agent and the privileged action it is attempting to perform.
+* `go test ./...` — PASS
+* `go test -race ./...` — PASS
+* `go vet ./...` — PASS
+* `go build ./...` — PASS
+* 50 documented attack/misuse scenarios
+* clean-clone reproduction
+* live authorized action → HTTP 200 → protected backend reached
+* live unauthorized action → HTTP 403 → protected backend not reached
+
+These are creator-controlled observations, not independent external validation.
+
+### Try to Break Aether
+
+**[Break Aether](./docs/BREAK_AETHER.md)**
+
+Try to:
+
+* replay authorization material;
+* change the target;
+* change the identity;
+* change the intent or capability;
+* modify protected payload context;
+* race authorization reuse;
+* submit malformed security material;
+* test revoked authority.
+
+**If you find a bypass, report it.**
+
+A failed security test is more valuable than an untested claim.
+
+---
+
+## The Authorization Boundary
 
 ```text
 ┌──────────────────────┐
@@ -29,7 +64,7 @@ Aether focuses on the control boundary between an agent and the privileged actio
            │
            ▼
 ┌────────────────────────────────────┐
-│            AETHER                  │
+│             AETHER                 │
 │                                    │
 │  IDENTITY                          │
 │      ↓                             │
@@ -47,15 +82,29 @@ Aether focuses on the control boundary between an agent and the privileged actio
       ALLOW          DENY
         │             │
         ▼             ▼
-    TOOL/API       NOTHING
+     TOOL/API       NOTHING
         │
         ▼
      EVIDENCE
 ```
 
-Aether does not attempt to determine whether an AI model is intelligent, correct, or trustworthy.
+Aether sits above workload identity and evaluates the requested action at the enforcement boundary.
 
-It evaluates whether the requested **action** satisfies the authorization policy and security controls defined at the enforcement boundary.
+It does **not** attempt to determine whether an AI model is intelligent, correct, or trustworthy.
+
+---
+
+## Run It
+
+Start with the documented reproduction path:
+
+**[Clean Reproduction Guide](./docs/DAY11_REPRODUCTION.md)**
+
+**[Threat Model](./docs/THREAT_MODEL.md)** · **[Attack Lab](./docs/BREAK_AETHER.md)** · **[Security Policy](./SECURITY.md)**
+
+The public repository is the canonical source:
+
+**https://github.com/YabulHaj/Aether-Protocol**
 
 ---
 

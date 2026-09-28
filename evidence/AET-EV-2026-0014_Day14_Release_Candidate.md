@@ -2,7 +2,6 @@
 
 **Evidence ID:** `AET-EV-2026-0014`
 **Date:** September 24, 2026
-**Blueprint:** Aether Ultimate Project Blueprint v0.3
 **Milestone:** Day 14 — Release Candidate and Evidence Freeze
 **Classification:** Creator-controlled release-candidate verification
 **Independent verification:** NOT VERIFIED

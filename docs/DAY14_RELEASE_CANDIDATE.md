@@ -1,24 +1,23 @@
-# Aether Day 14 — Release Candidate
+# Aether Day 14 — Launch Candidate Verification
 
-**Date:** September 24, 2026
-**Blueprint:** Aether Ultimate Project Blueprint v0.3
-**Milestone:** Day 14 — Release Candidate and Evidence Freeze
-**Starting Git commit:** `ab3324f`
-**Branch:** `master`
+**Date:** September 27, 2026
+**Milestone:** Day 14 — Launch Candidate Verification
+**Launch-candidate baseline commit:** `22b0f9f`
+**Branch:** `main`
 **Go version:** `go1.27.1 windows/amd64`
-**Evidence classification:** Creator-controlled release-candidate verification
+**Evidence classification:** Creator-controlled launch-candidate verification
 
 ---
 
 ## 1. Purpose
 
-Day 14 packages the completed Aether engineering work into a documented release candidate.
+Day 14 packages the completed Aether engineering work into a documented launch candidate.
 
-The objective is to verify the current repository state, preserve the observed test results, verify release documentation, and prepare the project for evidence freeze.
+The objective is to verify the repository, preserve actual observed results, verify release documentation, reproduce the documented workflow from a clean clone, and establish the evidence boundary for the planned public release.
 
 This document records actual commands and observed outcomes.
 
-It does not constitute independent security validation.
+It does not constitute independent security validation, independent review, production certification, or organizational adoption.
 
 ---
 
@@ -52,7 +51,7 @@ Day 13 resolved the documented `405` / `413` evidence-coverage discrepancy withi
 
 ---
 
-## 3. Final Repository Verification
+## 3. Repository Verification
 
 ### Full test suite
 
@@ -66,9 +65,9 @@ Observed result:
 
 **PASS**
 
-Command-package duration:
+Observed command-package duration during the September 27, 2026 verification run:
 
-`70.337s`
+`81.883s`
 
 All tested repository packages passed.
 
@@ -81,18 +80,20 @@ Commands:
 ```powershell
 $env:CGO_ENABLED="1"
 $env:Path="C:\msys64\ucrt64\bin;$env:Path"
-go test -race -count=1 ./...
+go test -race ./...
 ```
 
 Observed result:
 
 **PASS**
 
-Command-package duration:
+Observed command-package duration during the September 27, 2026 clean-clone verification run:
 
-`93.900s`
+`124.845s`
 
 No data race was reported.
+
+The race detector was executed successfully only after enabling CGO and making the installed MSYS2 UCRT64 GCC toolchain available on the process PATH.
 
 ---
 
@@ -101,38 +102,24 @@ No data race was reported.
 Command:
 
 ```powershell
-go test -count=1 ./cmd -run '^TestDay9AttackLab$'
+go test -count=1 -v ./cmd -run TestDay10Benchmark
 ```
 
 Observed result:
 
 **PASS**
 
-Duration:
+Observed duration during the September 27, 2026 clean-clone verification run:
 
-`0.722s`
+`77.524s`
 
-This confirms the existing Day 9 attack-lab test remains green.
+The benchmark configuration recorded:
 
----
+* 50 scenarios
+* 100 measured iterations per scenario
+* 5 warmup iterations per scenario
 
-### Benchmark
-
-Command:
-
-```powershell
-go test -count=1 ./cmd -run '^TestDay10Benchmark$'
-```
-
-Observed result:
-
-**PASS**
-
-Duration:
-
-`64.961s`
-
-This is a local benchmark observation and is not presented as production-scale performance evidence.
+The benchmark report classifies the measurements as local loopback observations and does not present them as production-scale or remote-network performance evidence.
 
 ---
 
@@ -170,7 +157,7 @@ No build errors were reported.
 
 ### Go formatting
 
-The release candidate initially contained five Go files requiring formatting.
+The release candidate initially contained Go files requiring formatting.
 
 Those files were formatted with `gofmt`.
 
@@ -186,13 +173,187 @@ Observed result:
 
 No files were reported as requiring formatting.
 
-The full test suite and race-detector suite were rerun after formatting and both passed.
+---
+
+## 4. Clean-Clone Reproduction
+
+A fresh local clone of the launch candidate was created separately from the primary development directory:
+
+```text
+C:\Aether-Clean-Test
+```
+
+The clean clone was verified as a pristine working tree and confirmed to contain the launch-candidate baseline commit:
+
+```text
+22b0f9f Finalize reproducible quickstart and live UI state
+```
+
+The following commands were successfully executed from the clean clone:
+
+```powershell
+go test ./...
+go test -race ./...
+go vet ./...
+go build ./...
+go test -count=1 -v ./cmd -run TestDay10Benchmark
+```
+
+Observed result:
+
+**PASS**
+
+This establishes **creator-controlled clean-clone reproduction**.
+
+It does **not** establish independent external reproduction because the clean clone and verification were performed by the project author.
 
 ---
 
-## 4. Release Documentation Verification
+## 5. Clean-Clone Live Quickstart Verification
 
-The following release and project files were present:
+The documented live workflow was reproduced from the clean clone.
+
+### Protected backend
+
+Command:
+
+```powershell
+go run ./tools/dummy-backend
+```
+
+Observed:
+
+```text
+Dummy backend listening on localhost:9090
+```
+
+### Aether gateway
+
+Command:
+
+```powershell
+$env:AETHER_IDENTITY_MODE="mock"
+go run ./cmd
+```
+
+Observed:
+
+```text
+Aether gateway listening on localhost:8080
+```
+
+The expected security warning for the mock identity provider was also observed.
+
+### Live River
+
+The browser UI successfully displayed:
+
+```text
+LIVE
+REAL SSE
+```
+
+The connection state was also independently tested earlier against the same UI implementation:
+
+```text
+LIVE
+→ gateway stopped
+→ DISCONNECTED
+→ gateway restarted
+→ LIVE
+```
+
+---
+
+## 6. Clean-Clone Authorized Action Verification
+
+A valid authorization request was sent through the clean-clone gateway.
+
+Configured demonstration policy:
+
+```text
+Identity:   agent://finance-bot-01
+Intent:     summarize
+Capability: read:invoices
+Target:     invoice/12345
+Operation:  GET
+Audience:   aether-gateway
+Rule:       R-001
+```
+
+Observed HTTP result:
+
+```text
+HTTP 200
+{"status":"success","message":"Protected data accessed"}
+```
+
+The Live River displayed:
+
+```text
+ALLOWED
+```
+
+The Aether gateway generated structured evidence showing:
+
+```text
+allowed: true
+rule_id: R-001
+identity_ref: agent://finance-bot-01
+target_resource: invoice/12345
+reason_code: allow_matched_rule
+policy_version: v0.1.0
+```
+
+The protected backend also recorded the request:
+
+```text
+[BACKEND] Securely received request: /v1/action
+```
+
+This demonstrates that the authorized request was permitted and reached the protected target in the tested local configuration.
+
+---
+
+## 7. Clean-Clone Denied Action Verification
+
+A fresh denied request was then sent against a target not covered by the configured rule:
+
+```text
+Target: invoice/99999
+```
+
+Observed HTTP result:
+
+```text
+HTTP 403
+```
+
+The Live River displayed the denied/block state.
+
+Structured Aether evidence recorded:
+
+```text
+allowed: false
+reason_code: deny_no_matching_rule
+policy_version: v0.1.0
+```
+
+After resetting the dummy backend, the backend console remained at:
+
+```text
+Dummy backend listening on localhost:9090
+```
+
+and produced **no new `[BACKEND]` request line** for the denied action.
+
+This demonstrates, within the tested local implementation, that the denied request was blocked before reaching the protected backend.
+
+---
+
+## 8. Release Documentation Verification
+
+The following release and project files were present and reviewed:
 
 * `LICENSE`
 * `SECURITY.md`
@@ -202,30 +363,42 @@ The following release and project files were present:
 * `docs/DAY11_REPRODUCTION.md`
 * `docs/DAY12_RESEARCH_PACKAGE.md`
 * `docs/DAY13_SECURITY_HARDENING.md`
+* `docs/DAY14_RELEASE_CANDIDATE.md`
 * `evidence/AET-EV-2026-0013_Day13_Security_Hardening.md`
 
-The README was updated to reflect the completed Day 13 hardening work and the current Day 14 status.
+The README Quickstart was updated to document:
 
-A stale-claim search produced no matches for the previously unresolved `405` / `413` evidence-coverage language.
+* repository setup;
+* full test and build verification;
+* protected dummy backend startup;
+* Aether gateway startup;
+* Live River access;
+* authorized action reproduction;
+* denied action reproduction;
+* benchmark execution;
+* evidence interpretation;
+* security limitations.
 
 ---
 
-## 5. Licensing and Intellectual-Property Preparation
+## 9. Licensing and Intellectual-Property Preparation
 
-Aether's repository now contains the Apache License 2.0.
+Aether's repository contains the Apache License 2.0.
 
 The repository does not contain a `vendor` directory or copied third-party dependency source tree.
 
-The current Go dependency graph was inspected.
+The current Go dependency graph was previously inspected.
 
 The `go-licenses report ./...` audit identified dependency licenses including:
 
-* Apache-2.0;
-* MIT;
-* ISC;
-* BSD-3-Clause.
+* Apache-2.0
+* MIT
+* ISC
+* BSD-3-Clause
 
-The Aether module itself was reported with an unresolved source URL by the tool because `aether-protocol` is a local module name. The repository separately contains the official Apache License 2.0 text in `LICENSE`.
+The Aether module itself was reported with an unresolved source URL by the audit tool because `aether-protocol` is a local module name.
+
+The repository separately contains the official Apache License 2.0 text in `LICENSE`.
 
 The repository also contains:
 
@@ -236,69 +409,111 @@ These documents separate Aether's software licensing from third-party licenses a
 
 ---
 
-## 6. Security Boundary
+## 10. Security Boundary
 
 The release candidate continues to use the server-side authorization path as the security authority.
 
-The browser and Live Control Plane remain observational.
+The browser and Live River remain observational.
 
 The release candidate does not claim:
 
 * universal security;
 * production readiness;
 * independent security review;
-* independent reproduction;
+* independent external reproduction;
 * organizational adoption;
 * distributed replay or revocation guarantees;
 * production-scale performance;
-* live production SPIFFE/SPIRE validation.
+* live production SPIFFE/SPIRE validation;
+* prevention of all prompt-injection or agentic attack classes.
+
+Aether's scope remains the authorization and enforcement boundary surrounding autonomous software actions.
 
 ---
 
-## 7. Evidence Boundary
+## 11. Evidence Boundary
 
-The current evidence remains creator-controlled.
+The current evidence remains **creator-controlled**.
 
 The following are demonstrated by the current local implementation and executed tests:
 
 * authorization and enforcement behavior;
 * structured evidence generation within the defined authorization boundary;
 * concurrent same-nonce replay protection in the tested process-local implementation;
-* the existing attack-lab result;
-* benchmark execution;
+* Attack Lab benchmark execution;
 * race-detector validation;
-* reproducible local builds and tests.
+* static analysis;
+* reproducible local builds and tests;
+* clean-clone reproduction performed by the project author;
+* clean-clone authorized action reaching the protected backend;
+* clean-clone denied action being blocked before reaching the protected backend.
 
-These observations do not establish independent external validation.
+These observations do **not** establish:
+
+* independent external reproduction;
+* independent security review;
+* organizational evaluation;
+* organizational deployment;
+* broad real-world attack coverage;
+* production-scale performance;
+* absence of undiscovered vulnerabilities.
 
 ---
 
-## 8. Release-Candidate Limitations
+## 12. Release-Candidate Limitations
 
-The current release candidate remains bounded by:
+The current launch candidate remains bounded by:
 
 * process-local revocation and replay state;
 * mock identity in the local development path;
 * absence of live end-to-end SPIFFE/SPIRE validation;
 * absence of distributed multi-instance validation;
 * absence of independent security review;
-* absence of independent clean-environment reproduction;
+* absence of independent external clean-environment reproduction;
 * absence of organizational evaluation;
 * local benchmark scope;
-* absence of a measured revocation time-to-enforce guarantee.
+* absence of a measured revocation time-to-enforce guarantee;
+* limited attack-corpus scope relative to the full space of possible agent-security failures.
 
 ---
 
-## 9. Release-Candidate Status
+## 13. Launch-Candidate Status
 
-The engineering and verification gates executed during Day 14 passed.
+The engineering and verification gates executed during the September 27, 2026 validation cycle passed.
 
-The repository is therefore ready to be treated as a **creator-controlled Aether v0.3 release candidate** pending final evidence indexing and repository freeze.
+The repository has therefore reached a **creator-controlled launch-candidate state**.
 
-This document does not represent a public release, independent validation, or production certification.
+The launch candidate has been:
+
+* tested;
+* race-tested;
+* statically analyzed;
+* built;
+* benchmarked;
+* reproduced from a clean clone;
+* exercised through the live authorization path;
+* exercised through the live denial path.
+
+The remaining distinction is important:
+
+> A creator-controlled launch candidate is not the same as independently validated security software.
+
+The planned public release should preserve that distinction.
+
+This document does not represent:
+
+* independent validation;
+* independent security certification;
+* production certification;
+* organizational adoption;
+* proof of universal security.
 
 ---
 
-## 10. Governing Rule
+## 14. Governing Rule
 
-> Build what can be proved. Publish what can be defended. Measure what can be reproduced. Visualize what actually happened. Never manufacture evidence.
+> Build what can be proved.
+> Publish what can be defended.
+> Measure what can be reproduced.
+> Visualize what actually happened.
+> Never manufacture evidence.

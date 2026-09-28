@@ -1,7 +1,6 @@
 # Aether Day 13 — Security Hardening
 
 **Date:** September 23, 2026
-**Blueprint:** Aether Ultimate Project Blueprint v0.3
 **Evidence ID:** `AET-EV-2026-0013`
 **Classification:** Creator-controlled security hardening evidence
 

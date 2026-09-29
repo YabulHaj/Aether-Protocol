@@ -1,4 +1,4 @@
-﻿# Operating system files
+# Operating system files
 Thumbs.db
 Desktop.ini
 .DS_Store
@@ -47,5 +47,5 @@ settings.local.*
 /Aether-Protocol-BACKUP-*/
 
 # Historical/local test artifacts - never publish
-day8_source_dump.txt
+attack_lab_source_dump.txt
 test_payload.json

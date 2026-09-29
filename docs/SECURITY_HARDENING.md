@@ -117,4 +117,4 @@ Day 13 remains classified as:
 
 Formal evidence record:
 
-`evidence/AET-EV-2026-0013_Day13_Security_Hardening.md`
+`evidence/AET-EV-2026-0013_Security_Hardening.md`

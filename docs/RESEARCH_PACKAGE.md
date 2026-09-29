@@ -14,13 +14,13 @@ This research package is based on the Aether-Protocol repository artifacts revie
 * `docs/CHARTER.md`
 * `docs/THREAT_MODEL.md`
 * `DEFINITION_OF_DONE.md`
-* `docs/DAY11_REPRODUCTION.md`
+* `docs/CLEAN_REPRODUCTION.md`
 * `docs/KNOWN_LIMITATIONS.md`
 * `docs/IP_BOUNDARY.md`
 * `evidence/MASTER_INDEX.md`
-* `evidence/AET-EV-2026-0011_Day11_Reproduction.md`
-* `evidence/10_benchmarks/day10-benchmark-results.json`
-* `evidence/10_benchmarks/day10-benchmark-report.txt`
+* `evidence/AET-EV-2026-0011_Reproduction.md`
+* `evidence/10_benchmarks/benchmark-results.json`
+* `evidence/10_benchmarks/benchmark-report.txt`
 * `evidence/reproduction_20260922_225514/`
 * `evidence/reproduction_20260922_225859/`
 * `evidence/reproduction_20260923_011320/`
@@ -576,7 +576,7 @@ The documented method includes:
 
 The primary formal evidence record is:
 
-`evidence/AET-EV-2026-0011_Day11_Reproduction.md`
+`evidence/AET-EV-2026-0011_Reproduction.md`
 
 ## 5.1 Formal Day 11 evidence record
 

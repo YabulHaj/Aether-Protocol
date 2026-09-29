@@ -98,7 +98,7 @@ It does **not** attempt to determine whether an AI model is intelligent, correct
 
 Start with the documented reproduction path:
 
-**[Clean Reproduction Guide](./docs/DAY11_REPRODUCTION.md)**
+**[Clean Reproduction Guide](./docs/CLEAN_REPRODUCTION.md)**
 
 **[Threat Model](./docs/THREAT_MODEL.md)** · **[Attack Lab](./docs/BREAK_AETHER.md)** · **[Security Policy](./SECURITY.md)**
 
@@ -581,8 +581,8 @@ The current benchmark configuration executes 50 scenarios, 100 measured iteratio
 The test writes:
 
 ```text
-evidence/10_benchmarks/day10-benchmark-results.json
-evidence/10_benchmarks/day10-benchmark-report.txt
+evidence/10_benchmarks/benchmark-results.json
+evidence/10_benchmarks/benchmark-report.txt
 ```
 
 The benchmark reports identify the environment as local loopback and state that the measurements do not represent production network or remote identity-provider latency.

@@ -3,7 +3,7 @@
 **Evidence ID:** AET-EV-2026-0012
 **Date:** 2026-09-23
 **Day:** 12
-**Primary Artifact:** `docs/DAY12_RESEARCH_PACKAGE.md`
+**Primary Artifact:** `docs/RESEARCH_PACKAGE.md`
 **Classification:** Creator-controlled research documentation
 **Git commit:** Not assigned; working tree intentionally uncommitted
 
@@ -30,7 +30,7 @@ The Day 12 package documents:
 
 ## Primary Artifact
 
-`docs/DAY12_RESEARCH_PACKAGE.md`
+`docs/RESEARCH_PACKAGE.md`
 
 The research package is the substantive Day 12 document. This evidence record serves as the permanent evidence index for that package.
 
@@ -138,11 +138,11 @@ Aether has a documented, creator-controlled research package that describes its 
 
 **Primary research package:**
 
-`docs/DAY12_RESEARCH_PACKAGE.md`
+`docs/RESEARCH_PACKAGE.md`
 
 **Related reproduction evidence:**
 
-`evidence/AET-EV-2026-0011_Day11_Reproduction.md`
+`evidence/AET-EV-2026-0011_Reproduction.md`
 
 **Research definition and gate tracking:**
 

@@ -360,11 +360,11 @@ The following release and project files were present and reviewed:
 * `CONTRIBUTING.md`
 * `THIRD-PARTY-NOTICES.md`
 * `TRADEMARKS.md`
-* `docs/DAY11_REPRODUCTION.md`
-* `docs/DAY12_RESEARCH_PACKAGE.md`
-* `docs/DAY13_SECURITY_HARDENING.md`
-* `docs/DAY14_RELEASE_CANDIDATE.md`
-* `evidence/AET-EV-2026-0013_Day13_Security_Hardening.md`
+* `docs/CLEAN_REPRODUCTION.md`
+* `docs/RESEARCH_PACKAGE.md`
+* `docs/SECURITY_HARDENING.md`
+* `docs/RELEASE_CANDIDATE.md`
+* `evidence/AET-EV-2026-0013_Security_Hardening.md`
 
 The README Quickstart was updated to document:
 

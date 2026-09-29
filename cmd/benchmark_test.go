@@ -331,7 +331,7 @@ func calculateSampleStats(latencies []time.Duration) (p50, p95, sampleStdDev flo
 // --- Day 10 Main Benchmark Harness ---
 
 func TestDay10Benchmark(t *testing.T) {
-	scenarios := append(buildScenarios(), buildDay9Scenarios()...)
+	scenarios := append(buildCoreScenarios(), buildExtendedScenarios()...)
 	baselines := []BaselineAdapter{
 		&AetherBaseline{},
 		&WeakPassthroughBaseline{},
@@ -473,7 +473,7 @@ func writeBenchmarkReports(t *testing.T, report BenchmarkReport) {
 	if err != nil {
 		t.Fatalf("could not marshal JSON report: %v", err)
 	}
-	if err := os.WriteFile(filepath.Join(benchDir, "day10-benchmark-results.json"), b, 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(benchDir, "benchmark-results.json"), b, 0o644); err != nil {
 		t.Fatalf("could not write json report: %v", err)
 	}
 
@@ -512,7 +512,7 @@ func writeBenchmarkReports(t *testing.T, report BenchmarkReport) {
 		txt.WriteString("\n")
 	}
 
-	if err := os.WriteFile(filepath.Join(benchDir, "day10-benchmark-report.txt"), []byte(txt.String()), 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(benchDir, "benchmark-report.txt"), []byte(txt.String()), 0o644); err != nil {
 		t.Fatalf("could not write text report: %v", err)
 	}
 }

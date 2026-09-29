@@ -20,7 +20,7 @@ import (
 )
 
 // ============================================================
-// Day 8 Attack Lab
+// Aether Attack Lab — Core Corpus
 //
 // Exercises the REAL gateway end-to-end over HTTP:
 //
@@ -88,14 +88,14 @@ type outcome struct {
 	Notes          string                    `json:"notes,omitempty"`
 }
 
-func TestDay8AttackLab(t *testing.T) {
+func TestAttackLabCore(t *testing.T) {
 	// Fixed path: go test runs from within the cmd/ directory, so we need ../..
 	corpusDir := filepath.Join("..", "..", "Aether-Evidence", "08_attack_lab")
 	if err := os.MkdirAll(corpusDir, 0o755); err != nil {
 		t.Fatalf("could not create corpus dir %q: %v", corpusDir, err)
 	}
 
-	scenarios := buildScenarios()
+	scenarios := buildCoreScenarios()
 	results := make([]outcome, 0, len(scenarios))
 
 	for _, sc := range scenarios {
@@ -210,7 +210,7 @@ func TestDay8AttackLab(t *testing.T) {
 		})
 	}
 
-	writeCorpus(t, corpusDir, results)
+	writeCoreCorpus(t, corpusDir, results)
 }
 
 // parseAndVerifyEvidence walks the newly appended NDJSON records,
@@ -244,12 +244,12 @@ func parseAndVerifyEvidence(raw string) (reasons []string, records []evidence.Ev
 // Corpus writers
 // ============================================================
 
-func writeCorpus(t *testing.T, dir string, results []outcome) {
+func writeCoreCorpus(t *testing.T, dir string, results []outcome) {
 	t.Helper()
 
 	// --- day8-attack-lab.txt (human readable) ---
 	var txt strings.Builder
-	txt.WriteString("Day 8 Attack Lab — Actual Local Execution\n")
+	txt.WriteString("Aether Attack Lab — Core Corpus — Actual Local Execution\n")
 	txt.WriteString("=========================================\n\n")
 	txt.WriteString(fmt.Sprintf("Generated at: %s\n", time.Now().UTC().Format(time.RFC3339Nano)))
 	txt.WriteString(fmt.Sprintf("Total scenarios: %d\n\n", len(results)))
@@ -334,7 +334,7 @@ func writeCorpus(t *testing.T, dir string, results []outcome) {
 // Scenario table — DAY8-001 .. DAY8-020
 // ============================================================
 
-func buildScenarios() []scenario {
+func buildCoreScenarios() []scenario {
 	validAuth := validAuthHeader
 	validPath := "/v1/action"
 

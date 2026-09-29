@@ -1,12 +1,12 @@
 # Aether Master Evidence Index
 
-- **AET-EV-2026-0011** (2026-09-22): Day 11 - Creator-controlled clean reproduction harness execution. [Link](./AET-EV-2026-0011_Day11_Reproduction.md)
+- **AET-EV-2026-0011** (2026-09-22): Day 11 - Creator-controlled clean reproduction harness execution. [Link](./AET-EV-2026-0011_Reproduction.md)
 
 ## AET-EV-2026-0012
 
 - **Day:** 12
-- **Artifact:** `evidence/AET-EV-2026-0012_Day12_Research_Package.md`
-- **Primary research package:** `docs/DAY12_RESEARCH_PACKAGE.md`
+- **Artifact:** `evidence/AET-EV-2026-0012_Research_Package.md`
+- **Primary research package:** `docs/RESEARCH_PACKAGE.md`
 - **Classification:** Creator-controlled research documentation
 - **Status:** FORMALLY COMPLETE AND FROZEN
 - **Independent verification:** NOT VERIFIED
@@ -14,7 +14,7 @@
 ## AET-EV-2026-0013
 
 - **Day:** 13
-- **Artifact:** `evidence/AET-EV-2026-0013_Day13_Security_Hardening.md`
+- **Artifact:** `evidence/AET-EV-2026-0013_Security_Hardening.md`
 - **Classification:** Creator-controlled security hardening evidence
 - **Status:** FORMALLY COMPLETE AND FROZEN
 - **Independent verification:** NOT VERIFIED
@@ -23,8 +23,8 @@
 ## AET-EV-2026-0014
 
 - **Day:** 14
-- **Artifact:** `evidence/AET-EV-2026-0014_Day14_Release_Candidate.md`
-- **Primary release document:** `docs/DAY14_RELEASE_CANDIDATE.md`
+- **Artifact:** `evidence/AET-EV-2026-0014_Release_Candidate.md`
+- **Primary release document:** `docs/RELEASE_CANDIDATE.md`
 - **Classification:** Creator-controlled release-candidate verification
 - **Status:** FORMALLY COMPLETE AND FROZEN
 - **Independent verification:** NOT VERIFIED

@@ -44,7 +44,7 @@ func freshEnvelopeJSONAt(t *testing.T, fixedNow time.Time, mutate func(e *envelo
 	return b
 }
 
-func buildDay9Scenarios() []scenario {
+func buildExtendedScenarios() []scenario {
 	validAuth := validAuthHeader
 	validPath := "/v1/action"
 
@@ -255,15 +255,15 @@ func buildDay9Scenarios() []scenario {
 	}
 }
 
-// TestDay9AttackLab runs the complete 50-scenario Attack Lab corpus
+// TestAttackLabExtended runs the complete 50-scenario Attack Lab corpus
 // (DAY8-001 through DAY8-020 plus AET-ATT-0021 through AET-ATT-0050).
-func TestDay9AttackLab(t *testing.T) {
+func TestAttackLabExtended(t *testing.T) {
 	corpusDir := filepath.Join("..", "..", "Aether-Evidence", "09_attack_lab")
 	if err := os.MkdirAll(corpusDir, 0o755); err != nil {
 		t.Fatalf("could not create corpus dir %q: %v", corpusDir, err)
 	}
 
-	scenarios := append(buildScenarios(), buildDay9Scenarios()...)
+	scenarios := append(buildCoreScenarios(), buildExtendedScenarios()...)
 	results := make([]outcome, 0, len(scenarios))
 
 	for _, sc := range scenarios {
@@ -378,10 +378,10 @@ func TestDay9AttackLab(t *testing.T) {
 		})
 	}
 
-	writeDay9Corpus(t, corpusDir, results)
+	writeExtendedCorpus(t, corpusDir, results)
 }
 
-func writeDay9Corpus(t *testing.T, dir string, results []outcome) {
+func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 	t.Helper()
 
 	// --- day9-attack-lab.txt (human readable) ---

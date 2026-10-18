@@ -1,4 +1,4 @@
-# Aether Day 12 — Research Package
+# Aether: Technical Research and Evidence Package
 
 **Date:** 2026-09-22
 **Purpose:** Technical research and evidence documentation
@@ -8,7 +8,7 @@
 
 ## 0. Scope and Source Basis
 
-This research package is based on the Aether-Protocol repository artifacts reviewed for Day 12, including:
+This research package is based on the Aether-Protocol repository artifacts reviewed on 2026-09-22, including:
 
 * `README.md`
 * `docs/CHARTER.md`
@@ -26,8 +26,8 @@ This research package is based on the Aether-Protocol repository artifacts revie
 * `evidence/reproduction_20260923_011320/`
 * `cmd/main.go`
 * `cmd/main_test.go`
-* `cmd/attack_lab_test.go`
-* `cmd/attack_lab_day9_test.go`
+* `cmd/attack_lab_core_test.go`
+* `cmd/attack_lab_extended_test.go`
 * `cmd/benchmark_test.go`
 * `cmd/sse_test.go`
 * `cmd/telemetry_test.go`
@@ -52,9 +52,9 @@ The status vocabulary used throughout this document is:
 * `OUT OF SCOPE`
 * `DOCUMENTED`
 
-### Day 11 evidence boundary
+### Historical reproduction evidence boundary
 
-The formal Day 11 evidence record remains:
+The formal reproduction evidence record remains:
 
 **Evidence ID:** `AET-EV-2026-0011`
 **Classification:** `Creator-controlled clean reproduction`
@@ -298,12 +298,12 @@ plus an exact `Intent` match when the rule specifies `Intent`.
 
 **Tests/evidence:**
 
-* `DAY8-016`
-* `DAY8-017`
-* `DAY8-018`
-* `DAY8-019`
+* `AET-ATT-0016`
+* `AET-ATT-0017`
+* `AET-ATT-0018`
+* `AET-ATT-0019`
 * `AET-ATT-0041` through `AET-ATT-0047`
-* Day 10 benchmark artifacts
+* Authorization Enforcement Benchmark artifacts
 
 **Observed result:**
 The supplied artifacts report blocked outcomes for the tested non-matching policy cases.
@@ -329,9 +329,9 @@ Relevant controls include:
 
 **Tests/evidence:**
 
-* `DAY8-012`
-* `DAY8-013`
-* `DAY8-015`
+* `AET-ATT-0012`
+* `AET-ATT-0013`
+* `AET-ATT-0015`
 * `AET-ATT-0028`
 * `AET-ATT-0029`
 * `AET-ATT-0049`
@@ -354,9 +354,9 @@ The authorization decision uses exact matching across the four required dimensio
 
 **Tests/evidence:**
 
-* `DAY8-016`
-* `DAY8-017`
-* `DAY8-019`
+* `AET-ATT-0016`
+* `AET-ATT-0017`
+* `AET-ATT-0019`
 * `AET-ATT-0043`
 * `AET-ATT-0044`
 * `AET-ATT-0045`
@@ -394,10 +394,10 @@ Envelope validation returns an error rather than silently accepting invalid data
 **Tests/evidence:**
 
 * `TestBuildIdentityProvider_ZeroSilentFallback`
-* `DAY8-005`
-* `DAY8-006`
-* `DAY8-008` through `DAY8-013`
-* `DAY8-020`
+* `AET-ATT-0005`
+* `AET-ATT-0006`
+* `AET-ATT-0008` through `AET-ATT-0013`
+* `AET-ATT-0020`
 * `AET-ATT-0021` through `AET-ATT-0027`
 
 **Observed result:**
@@ -425,7 +425,7 @@ The inspected implementation:
 
 * `TestEvidence_HashVerifiesForAllowedRequest`
 * attack-lab evidence parsing/verification
-* Day 10 benchmark artifacts
+* Authorization Enforcement Benchmark artifacts
 
 **Observed result:**
 For envelope/auth/policy/revocation request classes, the supplied benchmark shows one evidence record per tested request.
@@ -468,8 +468,8 @@ Relevant mechanisms include:
 
 * `TestRevocation_IdentityRevokedReturns403AndZeroHits`
 * `TestRevocation_NonceRevokedReturns403AndZeroHits`
-* `DAY8-014`
-* `DAY8-015`
+* `AET-ATT-0014`
+* `AET-ATT-0015`
 * `AET-ATT-0048`
 * `AET-ATT-0049`
 
@@ -483,43 +483,56 @@ No measured revocation time-to-enforce bound is established. The process-local s
 
 # 4. Attack Findings
 
+**Canonical scenario ID mapping**
+
+Earlier source and evidence records used `DAY8-001` through `DAY8-020` for the 20 core scenarios. Their canonical identifiers in the current source are `AET-ATT-0001` through `AET-ATT-0020`, respectively, preserving the numerical sequence. The extended scenarios retain `AET-ATT-0021` through `AET-ATT-0050`.
+
+The scenario tables below use the canonical identifiers. This mapping does not rewrite historical benchmark reports, alter past recorded observations, or regenerate earlier evidence.
+
+**Source-file naming correspondence**
+
+- Historical `cmd/attack_lab_test.go` -> current `cmd/attack_lab_core_test.go`
+- Historical `cmd/attack_lab_day9_test.go` -> current `cmd/attack_lab_extended_test.go`
+
+Historical benchmark reference files under `evidence/10_benchmarks/` retain their existing paths. The benchmark writer now uses a separate default output destination in the private sibling directory.
+
 The supplied evidence contains two principal Attack Lab generations:
 
-* `cmd/attack_lab_test.go` — `DAY8-001` through `DAY8-020`
-* `cmd/attack_lab_day9_test.go` — `AET-ATT-0021` through `AET-ATT-0050`
+* `cmd/attack_lab_core_test.go` — `AET-ATT-0001` through `AET-ATT-0020`
+* `cmd/attack_lab_extended_test.go` — `AET-ATT-0021` through `AET-ATT-0050`
 
-The Day 10 benchmark incorporates the scenario corpus into repeated execution.
+The Authorization Enforcement Benchmark executes the scenario corpus repeatedly.
 
 The statements below are **observations of the supplied benchmark/test artifacts**, not independent verification.
 
-## 4.1 Day 8 scenarios
+## 4.1 Core Attack Lab scenarios
 
 | ID       | Condition                | Expected                      | Reported observed result | Control          | Backend Δ | Classification |
 | -------- | ------------------------ | ----------------------------- | ------------------------ | ---------------- | --------: | -------------- |
-| DAY8-001 | Valid baseline           | 200 / `allow_matched_rule`    | 200                      | Allow            |         1 | PASS           |
-| DAY8-002 | GET on `/v1/action`      | 405                           | 405                      | Method gate      |         0 | PASS           |
-| DAY8-003 | Missing `Authorization`  | 401 / `IDENTITY_INVALID`      | 401                      | Identity         |         0 | PASS           |
-| DAY8-004 | Unknown bearer           | 401 / `IDENTITY_INVALID`      | 401                      | Identity         |         0 | PASS           |
-| DAY8-005 | Malformed JSON           | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-006 | Missing `IdentityRef`    | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-007 | Identity mismatch        | 401 / `IDENTITY_MISMATCH`     | 401                      | Identity binding |         0 | PASS           |
-| DAY8-008 | Missing `NonceID`        | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-009 | Missing `Capability`     | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-010 | Missing `TargetResource` | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-011 | Missing `Operation`      | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
-| DAY8-012 | Expired                  | 400 / `MALFORMED`             | 400                      | Freshness        |         0 | PASS           |
-| DAY8-013 | Future `IssuedAt`        | 400 / `MALFORMED`             | 400                      | Freshness        |         0 | PASS           |
-| DAY8-014 | Revoked identity         | 403 / `REVOKED`               | 403                      | Revocation       |         0 | PASS           |
-| DAY8-015 | Revoked nonce            | 403 / `REVOKED`               | 403                      | Revocation       |         0 | PASS           |
-| DAY8-016 | Wrong target             | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
-| DAY8-017 | Wrong operation          | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
-| DAY8-018 | Capability escalation    | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
-| DAY8-019 | Near-miss target         | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
-| DAY8-020 | Missing `PayloadHash`    | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0001 | Valid baseline           | 200 / `allow_matched_rule`    | 200                      | Allow            |         1 | PASS           |
+| AET-ATT-0002 | GET on `/v1/action`      | 405                           | 405                      | Method gate      |         0 | PASS           |
+| AET-ATT-0003 | Missing `Authorization`  | 401 / `IDENTITY_INVALID`      | 401                      | Identity         |         0 | PASS           |
+| AET-ATT-0004 | Unknown bearer           | 401 / `IDENTITY_INVALID`      | 401                      | Identity         |         0 | PASS           |
+| AET-ATT-0005 | Malformed JSON           | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0006 | Missing `IdentityRef`    | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0007 | Identity mismatch        | 401 / `IDENTITY_MISMATCH`     | 401                      | Identity binding |         0 | PASS           |
+| AET-ATT-0008 | Missing `NonceID`        | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0009 | Missing `Capability`     | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0010 | Missing `TargetResource` | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0011 | Missing `Operation`      | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
+| AET-ATT-0012 | Expired                  | 400 / `MALFORMED`             | 400                      | Freshness        |         0 | PASS           |
+| AET-ATT-0013 | Future `IssuedAt`        | 400 / `MALFORMED`             | 400                      | Freshness        |         0 | PASS           |
+| AET-ATT-0014 | Revoked identity         | 403 / `REVOKED`               | 403                      | Revocation       |         0 | PASS           |
+| AET-ATT-0015 | Revoked nonce            | 403 / `REVOKED`               | 403                      | Revocation       |         0 | PASS           |
+| AET-ATT-0016 | Wrong target             | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
+| AET-ATT-0017 | Wrong operation          | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
+| AET-ATT-0018 | Capability escalation    | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
+| AET-ATT-0019 | Near-miss target         | 403 / `deny_no_matching_rule` | 403                      | Policy           |         0 | PASS           |
+| AET-ATT-0020 | Missing `PayloadHash`    | 400 / `MALFORMED`             | 400                      | Envelope         |         0 | PASS           |
 
-## 4.2 Day 9 scenario categories
+## 4.2 Extended Attack Lab scenario categories
 
-The supplied Day 9 test file covers:
+The extended Attack Lab source covers:
 
 * Envelope structural integrity: `AET-ATT-0021` through `AET-ATT-0027`
 * Freshness: `AET-ATT-0028`, `AET-ATT-0029`
@@ -571,14 +584,14 @@ The documented method includes:
 1. execution from a repository containing `go.mod`;
 2. use of Go and Git;
 3. `go test -count=1 ./...`;
-4. execution of the Day 10 benchmark test;
+4. execution of the Authorization Enforcement Benchmark;
 5. generation of timestamped reproduction artifacts.
 
 The primary formal evidence record is:
 
 `evidence/AET-EV-2026-0011_Reproduction.md`
 
-## 5.1 Formal Day 11 evidence record
+## 5.1 Formal Reproduction Evidence Record
 
 **Evidence ID:** `AET-EV-2026-0011`
 
@@ -623,7 +636,7 @@ This historical/unindexed artifact:
 * is not part of `AET-EV-2026-0011`;
 * is not counted as a successful reproduction;
 * is not used as evidence supporting successful reproduction;
-* does not alter the formal Day 11 evidence record.
+* does not alter the formal reproduction evidence record.
 
 Its existence is preserved here for chronology and transparency.
 
@@ -722,7 +735,7 @@ The benchmark evidence indicates zero evidence records for certain:
 
 requests.
 
-This conflicts with the broad wording of the Day 11 Definition of Done gate concerning evidence coverage.
+This conflicts with the broad wording of the documented Definition of Done gate concerning evidence coverage.
 
 The discrepancy remains unresolved in the supplied evidence.
 
@@ -744,7 +757,7 @@ The following remain open:
 
 | Claim                                   | Supporting Evidence                                                                                       | What the Evidence Supports                                                                           | What It Does NOT Establish                                                                        |
 | --------------------------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Default-deny policy engine              | `internal/policy/policy.go`; Day 8/Day 9 attack scenarios; benchmark artifacts                            | Requests that do not match the loaded authorization rule set are denied in the tested implementation | That every possible policy configuration is correct, complete, or production-suitable             |
+| Default-deny policy engine              | `internal/policy/policy.go`; core and extended Attack Lab scenarios; benchmark artifacts                            | Requests that do not match the loaded authorization rule set are denied in the tested implementation | That every possible policy configuration is correct, complete, or production-suitable             |
 | Single-use nonce anti-replay            | `internal/revocation/revocation.go`; `TestAntiReplay_DuplicateNonceRejectedAndZeroHits`; attack scenarios | Duplicate nonces are rejected within the tested process-local mechanism                              | Persistent, distributed, or long-duration replay protection                                       |
 | Record-level tamper-detection mechanism | `internal/evidence/evidence.go`; evidence verification test                                               | Mutation of covered fields can be detected for a record under the implemented verification mechanism | Whole-log integrity, ordering integrity, or protection against complete log rewriting             |
 | Exact target/operation binding          | `internal/policy/policy.go`; tested wrong-target/wrong-operation cases                                    | The policy engine uses exact matching of the required dimensions                                     | Wildcard, prefix, hierarchical, or case-folded authorization semantics                            |
@@ -752,7 +765,7 @@ The following remain open:
 | Non-blocking telemetry behavior         | `internal/telemetry/telemetry.go`; telemetry tests                                                        | Broadcast can remain non-blocking when a subscriber is saturated                                     | Guaranteed event delivery                                                                         |
 | SPIFFE provider code exists             | `internal/identity/spiffe.go`                                                                             | SPIFFE-related provider logic exists in the implementation                                           | End-to-end operation against a live SPIRE deployment                                              |
 | Creator-controlled reproduction         | `AET-EV-2026-0011`; three recorded runs                                                                   | The documented reproduction workflow was successfully executed three times by the creator            | Independent reproduction or external validation                                                   |
-| Day 10 benchmark observation            | Benchmark source and recorded benchmark artifacts                                                         | The supplied artifacts report 50 scenarios with 100 iterations and the recorded local outcomes       | Production scalability, remote latency, or resilience                                             |
+| Authorization Enforcement Benchmark observation            | Benchmark source and recorded benchmark artifacts                                                         | The supplied artifacts report 50 scenarios with 100 iterations and the recorded local outcomes       | Production scalability, remote latency, or resilience                                             |
 | Attack Lab artifact result              | Attack Lab tests and benchmark evidence                                                                   | The supplied artifacts report 50/50 scenarios meeting their expected outcomes                        | Universal attack coverage or independent security verification                                    |
 
 ---
@@ -810,7 +823,7 @@ The repository's own `PROVEN` taxonomy for selected cryptographic mechanisms is 
 
 ## 10.1 Primary finding: evidence-coverage discrepancy
 
-The most significant Day 12 research finding is a specific documentation-versus-behavior discrepancy:
+A significant finding in this research package is a specific documentation-versus-behavior discrepancy:
 
 * the Definition of Done requires structured evidence for processed requests;
 * the supplied benchmark artifacts show zero evidence records on selected early-exit request classes.
@@ -837,7 +850,7 @@ It does not establish independent reproduction, external security review, or org
 
 A separate historical artifact contains a setup failure.
 
-It is not part of the formal Day 11 evidence record and is not used to support a successful-reproduction claim.
+It is not part of the formal reproduction evidence record and is not used to support a successful-reproduction claim.
 
 Its existence is retained in this package for chronology and transparency.
 
@@ -845,13 +858,13 @@ Its existence is retained in this package for chronology and transparency.
 
 # 11. Definition-of-Research Status
 
-### Completed for Day 12
+### Research package completion status
 
 * Threat model documented and bounded.
 * Implemented architecture traced to inspected source.
 * Security invariants derived from implementation and available tests/evidence.
 * Attack findings documented from supplied artifacts.
-* Day 11 reproduction method documented.
+* Historical reproduction method documented.
 * Known limitations documented.
 * Bounded claims documented.
 * Unsupported claims explicitly excluded.

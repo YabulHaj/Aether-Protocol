@@ -76,6 +76,13 @@ func TestValidate_NegativeCases(t *testing.T) {
 			wantErr: ErrIssuedInFuture,
 		},
 		{
+			name: "expiry exactly at validation time",
+			mutate: func(e *ActionEnvelope) {
+				e.Expiry = now
+			},
+			wantErr: ErrExpired,
+		},
+		{
 			name: "expired envelope",
 			mutate: func(e *ActionEnvelope) {
 				e.IssuedAt = now.Add(-10 * time.Minute)

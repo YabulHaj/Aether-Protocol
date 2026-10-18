@@ -328,9 +328,9 @@ func calculateSampleStats(latencies []time.Duration) (p50, p95, sampleStdDev flo
 	return p50, p95, sampleStdDev
 }
 
-// --- Day 10 Main Benchmark Harness ---
+// --- Authorization Enforcement Benchmark ---
 
-func TestDay10Benchmark(t *testing.T) {
+func TestAuthorizationEnforcementBenchmark(t *testing.T) {
 	scenarios := append(buildCoreScenarios(), buildExtendedScenarios()...)
 	baselines := []BaselineAdapter{
 		&AetherBaseline{},
@@ -339,7 +339,7 @@ func TestDay10Benchmark(t *testing.T) {
 	}
 
 	report := BenchmarkReport{
-		BenchmarkVersion: "v0.2.0-day10",
+		BenchmarkVersion: "v0.2.0",
 		GeneratedAt:      time.Now().UTC().Format(time.RFC3339),
 		Environment: EnvironmentInfo{
 			OS:                     runtime.GOOS,
@@ -447,7 +447,7 @@ func TestDay10Benchmark(t *testing.T) {
 					}
 
 					if !isStable || baseRes.FinalClassification != expectedOutcome {
-						t.Fatalf("Day 10 Aether benchmark gate failed for scenario %s: got final classification %q, expected %q (stable: %v)",
+						t.Fatalf("Aether benchmark gate failed for scenario %s: got final classification %q, expected %q (stable: %v)",
 							sc.ID, baseRes.FinalClassification, expectedOutcome, isStable)
 					}
 
@@ -464,7 +464,7 @@ func TestDay10Benchmark(t *testing.T) {
 
 func writeBenchmarkReports(t *testing.T, report BenchmarkReport) {
 	t.Helper()
-	benchDir := filepath.Join("..", "evidence", "10_benchmarks")
+	benchDir := generatedEvidenceDir(t, filepath.Join("benchmarks", "authorization-enforcement"))
 	if err := os.MkdirAll(benchDir, 0o755); err != nil {
 		t.Fatalf("could not create benchmark dir: %v", err)
 	}
@@ -473,12 +473,12 @@ func writeBenchmarkReports(t *testing.T, report BenchmarkReport) {
 	if err != nil {
 		t.Fatalf("could not marshal JSON report: %v", err)
 	}
-	if err := os.WriteFile(filepath.Join(benchDir, "benchmark-results.json"), b, 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(benchDir, "authorization-benchmark-results.json"), b, 0o644); err != nil {
 		t.Fatalf("could not write json report: %v", err)
 	}
 
 	var txt strings.Builder
-	txt.WriteString("Aether Protocol Day 10 Benchmark Report\n")
+	txt.WriteString("Aether Authorization Enforcement Benchmark Report\n")
 	txt.WriteString("=======================================\n\n")
 	txt.WriteString(fmt.Sprintf("Generated At : %s\n", report.GeneratedAt))
 	txt.WriteString(fmt.Sprintf("Environment  : %s / %s / %s\n", report.Environment.OS, report.Environment.Architecture, report.Environment.GoVersion))
@@ -512,7 +512,7 @@ func writeBenchmarkReports(t *testing.T, report BenchmarkReport) {
 		txt.WriteString("\n")
 	}
 
-	if err := os.WriteFile(filepath.Join(benchDir, "benchmark-report.txt"), []byte(txt.String()), 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(benchDir, "authorization-benchmark-report.txt"), []byte(txt.String()), 0o644); err != nil {
 		t.Fatalf("could not write text report: %v", err)
 	}
 }

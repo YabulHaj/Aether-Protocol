@@ -1,4 +1,4 @@
-# Aether Day 13 — Security Hardening
+# Aether: Security Hardening
 
 **Date:** September 23, 2026
 **Evidence ID:** `AET-EV-2026-0013`
@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-Day 13 hardened two specific security properties identified during the Aether development and research cycle:
+This document records hardening of two specific security properties identified during the Aether development and research cycle:
 
 1. Structured evidence coverage for authorization-boundary early exits.
 2. Concurrent anti-replay protection for reuse of the same authorization nonce.
@@ -75,13 +75,13 @@ go test -race -count=1 ./cmd
 go test -race -count=1 ./...
 ```
 
-The Day 9 attack-lab test was also re-run successfully:
+An earlier verification record reported a successful extended Attack Lab run under its former test name. The current source test is `TestAttackLabExtended`; the historical result below does not establish that the current version has just been re-run:
 
 ```text
-TestDay9AttackLab: PASS
+Historical test name: TestDay9AttackLab — recorded result: PASS
 ```
 
-The existing Day 10 benchmark remains part of the repository test suite. Its longer execution time is expected because it intentionally performs repeated local benchmark iterations.
+The existing Authorization Enforcement Benchmark remains part of the repository test suite. Its longer execution time is expected because it intentionally performs repeated local benchmark iterations.
 
 ## 5. Security Boundary
 
@@ -103,7 +103,7 @@ The `REQUEST_TOO_LARGE` evidence path was specifically verified using an oversiz
 
 The current implementation groups body-read failures under the `REQUEST_TOO_LARGE` handling path. A future hardening cycle may distinguish a true `MaxBytesError` from other body-read failures if that distinction becomes necessary.
 
-## 7. Day 13 Result
+## 7. Result
 
 The documented `405` / `413` evidence-coverage issue has been resolved for the defined Aether authorization boundary.
 
@@ -111,7 +111,7 @@ The `404` case remains outside that boundary.
 
 Concurrent reuse of the same authorization nonce is now tested under contention, with exactly one successful request and the remaining concurrent requests rejected.
 
-Day 13 remains classified as:
+The security-hardening work remains classified as:
 
 **CREATOR-CONTROLLED SECURITY HARDENING EVIDENCE**
 

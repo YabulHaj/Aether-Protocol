@@ -241,9 +241,9 @@ func buildExtendedScenarios() []scenario {
 		},
 		{
 			ID: "AET-ATT-0049", Name: "Revoked Nonce Identifier", Category: "revocation", Method: http.MethodPost, Path: validPath, AuthHeader: validAuth,
-			Revoke: func(r *revocation.InMemoryRevocationRegistry) { r.RevokeNonce("nonce-day9-049") },
+			Revoke: func(r *revocation.InMemoryRevocationRegistry) { r.RevokeNonce("nonce-revoked-0049") },
 			BuildBody: func(t *testing.T) []byte {
-				return freshEnvelopeJSON(t, func(e *envelope.ActionEnvelope) { e.NonceID = "nonce-day9-049" })
+				return freshEnvelopeJSON(t, func(e *envelope.ActionEnvelope) { e.NonceID = "nonce-revoked-0049" })
 			},
 			ExpectedStatus: http.StatusForbidden, ExpectedDelta: 0,
 		},
@@ -256,12 +256,9 @@ func buildExtendedScenarios() []scenario {
 }
 
 // TestAttackLabExtended runs the complete 50-scenario Attack Lab corpus
-// (DAY8-001 through DAY8-020 plus AET-ATT-0021 through AET-ATT-0050).
+// (AET-ATT-0001 through AET-ATT-0050).
 func TestAttackLabExtended(t *testing.T) {
-	corpusDir := filepath.Join("..", "..", "Aether-Evidence", "09_attack_lab")
-	if err := os.MkdirAll(corpusDir, 0o755); err != nil {
-		t.Fatalf("could not create corpus dir %q: %v", corpusDir, err)
-	}
+	corpusDir := generatedEvidenceDir(t, filepath.Join("attack-lab", "full"))
 
 	scenarios := append(buildCoreScenarios(), buildExtendedScenarios()...)
 	results := make([]outcome, 0, len(scenarios))
@@ -384,9 +381,9 @@ func TestAttackLabExtended(t *testing.T) {
 func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 	t.Helper()
 
-	// --- day9-attack-lab.txt (human readable) ---
+	// --- attack-lab-full-report.txt (human readable) ---
 	var txt strings.Builder
-	txt.WriteString("Day 9 Attack Lab — 50-Scenario Expansion Execution\n")
+	txt.WriteString("Aether Attack Lab — Full 50-Scenario Corpus — Actual Local Execution\n")
 	txt.WriteString("==================================================\n\n")
 	txt.WriteString(fmt.Sprintf("Generated at: %s\n", time.Now().UTC().Format(time.RFC3339Nano)))
 	txt.WriteString(fmt.Sprintf("Total scenarios: %d\n\n", len(results)))
@@ -410,11 +407,11 @@ func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 		txt.WriteString("\n")
 	}
 
-	if err := os.WriteFile(filepath.Join(dir, "day9-attack-lab.txt"), []byte(txt.String()), 0o644); err != nil {
-		t.Fatalf("could not write day9-attack-lab.txt: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-full-report.txt"), []byte(txt.String()), 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-full-report.txt: %v", err)
 	}
 
-	// --- day9-scenario-corpus.json (structured) ---
+	// --- attack-lab-full-corpus.json (structured) ---
 	corpus := struct {
 		CorpusVersion  string    `json:"corpus_version"`
 		GeneratedAt    string    `json:"generated_at"`
@@ -426,7 +423,7 @@ func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 		InfraErrors    int       `json:"infrastructure_errors"`
 		Scenarios      []outcome `json:"scenarios"`
 	}{
-		CorpusVersion:  "v0.2.0-day9",
+		CorpusVersion:  "v0.2.0",
 		GeneratedAt:    time.Now().UTC().Format(time.RFC3339Nano),
 		TotalScenarios: len(results),
 		Scenarios:      results,
@@ -448,13 +445,13 @@ func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 
 	corpusJSON, err := json.MarshalIndent(corpus, "", "  ")
 	if err != nil {
-		t.Fatalf("could not marshal day 9 corpus: %v", err)
+		t.Fatalf("could not marshal full Attack Lab corpus: %v", err)
 	}
-	if err := os.WriteFile(filepath.Join(dir, "day9-scenario-corpus.json"), corpusJSON, 0o644); err != nil {
-		t.Fatalf("could not write day9-scenario-corpus.json: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-full-corpus.json"), corpusJSON, 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-full-corpus.json: %v", err)
 	}
 
-	// --- day9-attack-lab.jsonl (one JSON object per line) ---
+	// --- attack-lab-full-results.jsonl (one JSON object per line) ---
 	var jsonl strings.Builder
 	for _, r := range results {
 		line, err := json.Marshal(r)
@@ -464,7 +461,7 @@ func writeExtendedCorpus(t *testing.T, dir string, results []outcome) {
 		jsonl.Write(line)
 		jsonl.WriteByte('\n')
 	}
-	if err := os.WriteFile(filepath.Join(dir, "day9-attack-lab.jsonl"), []byte(jsonl.String()), 0o644); err != nil {
-		t.Fatalf("could not write day9-attack-lab.jsonl: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-full-results.jsonl"), []byte(jsonl.String()), 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-full-results.jsonl: %v", err)
 	}
 }

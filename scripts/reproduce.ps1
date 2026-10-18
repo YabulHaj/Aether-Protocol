@@ -1,4 +1,4 @@
-﻿$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 # Ensure script executes from repository root
 $RepoRoot = (Get-Item $PSScriptRoot).Parent.FullName
@@ -34,6 +34,22 @@ $GitCommit = if (Get-Command git -ErrorAction SilentlyContinue) { (git rev-parse
 $GitBranch = if (Get-Command git -ErrorAction SilentlyContinue) { (git branch --show-current 2>$null).Trim() } else { "Unknown" }
 if ([string]::IsNullOrWhiteSpace($GitCommit)) { $GitCommit = "Unknown" }
 if ([string]::IsNullOrWhiteSpace($GitBranch)) { $GitBranch = "Unknown" }
+# Capture repository status before running the tests.
+$GitAvailable = [bool](Get-Command git -ErrorAction SilentlyContinue)
+$GitStatus = @()
+if ($GitAvailable) {
+    $GitStatus = @(git status --porcelain --untracked-files=all 2>$null)
+}
+if (-not $GitAvailable) {
+    $WorkingTreeClean = $null
+    $WorkingTreeMode = "Local Reproduction (Git status unavailable)"
+} elseif ($GitStatus.Count -eq 0) {
+    $WorkingTreeClean = $true
+    $WorkingTreeMode = "Local Reproduction (working tree clean)"
+} else {
+    $WorkingTreeClean = $false
+    $WorkingTreeMode = "Local Reproduction (working tree modified)"
+}
 
 Write-Host "
 [SYSTEM CONTEXT]" -ForegroundColor DarkGray
@@ -42,6 +58,11 @@ Write-Host "Go: $GoVersion"
 Write-Host "Repository Path: $RepoRoot"
 Write-Host "Git Commit: $GitCommit"
 Write-Host "Git Branch: $GitBranch"
+Write-Host "Working Tree Clean: $WorkingTreeClean"
+if ($GitStatus.Count -gt 0) {
+    Write-Host "Working Tree Status:"
+    foreach ($Entry in $GitStatus) { Write-Host "  $Entry" }
+}
 
 # Initialize Manifest
 $Manifest = [ordered]@{
@@ -50,10 +71,12 @@ $Manifest = [ordered]@{
     repository = $RepoRoot
     git_commit = $GitCommit
     git_branch = $GitBranch
+    working_tree_clean = $WorkingTreeClean
+    working_tree_status = @($GitStatus)
     go_version = $GoVersion
     os = $OSInfo
-    mode = "Clean Local Reproduction"
-    commands = @("go test -count=1 ./...", "go test -count=1 -v ./cmd -run TestDay10Benchmark")
+    mode = $WorkingTreeMode
+    commands = @("go test -count=1 -skip '^TestAuthorizationEnforcementBenchmark$' ./...", "go test -count=1 -v ./cmd -run TestAuthorizationEnforcementBenchmark")
     results = [ordered]@{
         core_tests = "PENDING"
         benchmark = "PENDING"
@@ -70,7 +93,7 @@ $Failed = $false
 Write-Host "
 ---> Running Core Security & Reproduction Tests..." -ForegroundColor Yellow
 $CoreLog = "$OutDir\core_tests.log"
-& go test -count=1 ./... 2>&1 | Tee-Object -FilePath $CoreLog
+& go test -count=1 -skip '^TestAuthorizationEnforcementBenchmark$' ./... 2>&1 | Tee-Object -FilePath $CoreLog
 if ($LASTEXITCODE -eq 0) {
     Write-Host "PASS: Core Tests completed successfully." -ForegroundColor Green
     $Manifest.results.core_tests = "PASS"
@@ -84,7 +107,7 @@ if ($LASTEXITCODE -eq 0) {
 Write-Host "
 ---> Running Benchmark / Attack Lab..." -ForegroundColor Yellow
 $BenchLog = "$OutDir\benchmark_run.log"
-& go test -count=1 -v ./cmd -run TestDay10Benchmark 2>&1 | Tee-Object -FilePath $BenchLog
+& go test -count=1 -v ./cmd -run TestAuthorizationEnforcementBenchmark 2>&1 | Tee-Object -FilePath $BenchLog
 if ($LASTEXITCODE -eq 0) {
     Write-Host "PASS: Benchmark completed successfully." -ForegroundColor Green
     $Manifest.results.benchmark = "PASS"

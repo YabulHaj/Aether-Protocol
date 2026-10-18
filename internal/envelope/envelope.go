@@ -103,7 +103,7 @@ func (e *ActionEnvelope) Validate(now time.Time) error {
 	if now.Before(e.IssuedAt) {
 		return ErrIssuedInFuture
 	}
-	if now.After(e.Expiry) {
+	if !now.Before(e.Expiry) {
 		return ErrExpired
 	}
 	if e.Payload != "" {

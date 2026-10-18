@@ -13,5 +13,5 @@ func main() {
 	})
 
 	fmt.Println("Dummy backend listening on localhost:9090")
-	http.ListenAndServe(":9090", nil)
+	http.ListenAndServe("127.0.0.1:9090", nil)
 }

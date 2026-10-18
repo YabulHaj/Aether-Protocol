@@ -1,7 +1,7 @@
-# Aether Day 14 — Launch Candidate Verification
+# Aether: Launch Candidate Verification
 
 **Date:** September 27, 2026
-**Milestone:** Day 14 — Launch Candidate Verification
+**Milestone:** Launch Candidate Verification
 **Launch-candidate baseline commit:** `22b0f9f`
 **Branch:** `main`
 **Go version:** `go1.27.1 windows/amd64`
@@ -11,7 +11,7 @@
 
 ## 1. Purpose
 
-Day 14 packages the completed Aether engineering work into a documented launch candidate.
+This document records launch-candidate verification for the completed Aether engineering work.
 
 The objective is to verify the repository, preserve actual observed results, verify release documentation, reproduce the documented workflow from a clean clone, and establish the evidence boundary for the planned public release.
 
@@ -21,9 +21,9 @@ It does not constitute independent security validation, independent review, prod
 
 ---
 
-## 2. Day 11–13 Status
+## 2. Prior Milestone Status
 
-### Day 11
+### Reproduction Packaging
 
 **Reproduction Packaging — COMPLETE**
 
@@ -31,7 +31,7 @@ Evidence:
 
 `AET-EV-2026-0011`
 
-### Day 12
+### Research Package
 
 **Research Package — COMPLETE**
 
@@ -39,7 +39,7 @@ Evidence:
 
 `AET-EV-2026-0012`
 
-### Day 13
+### Security Hardening
 
 **Security Hardening — COMPLETE**
 
@@ -47,7 +47,7 @@ Evidence:
 
 `AET-EV-2026-0013`
 
-Day 13 resolved the documented `405` / `413` evidence-coverage discrepancy within the defined Aether authorization boundary and added concurrent same-nonce replay testing.
+The security-hardening work resolved the documented `405` / `413` evidence-coverage discrepancy within the defined Aether authorization boundary and added concurrent same-nonce replay testing.
 
 ---
 
@@ -102,7 +102,7 @@ The race detector was executed successfully only after enabling CGO and making t
 Command:
 
 ```powershell
-go test -count=1 -v ./cmd -run TestDay10Benchmark
+go test -count=1 -v ./cmd -run TestAuthorizationEnforcementBenchmark
 ```
 
 Observed result:
@@ -196,7 +196,7 @@ go test ./...
 go test -race ./...
 go vet ./...
 go build ./...
-go test -count=1 -v ./cmd -run TestDay10Benchmark
+go test -count=1 -v ./cmd -run TestAuthorizationEnforcementBenchmark
 ```
 
 Observed result:

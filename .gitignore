@@ -41,6 +41,9 @@ settings.local.*
 *~
 *.swp
 
+# Generated clean-reproduction runs (local artifacts)
+/evidence/reproduction_*/
+
 # Private local material
 /Aether-Evidence/
 /Aether-Evidence-BACKUP-*/

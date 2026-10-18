@@ -88,12 +88,35 @@ type outcome struct {
 	Notes          string                    `json:"notes,omitempty"`
 }
 
-func TestAttackLabCore(t *testing.T) {
-	// Fixed path: go test runs from within the cmd/ directory, so we need ../..
-	corpusDir := filepath.Join("..", "..", "Aether-Evidence", "08_attack_lab")
-	if err := os.MkdirAll(corpusDir, 0o755); err != nil {
-		t.Fatalf("could not create corpus dir %q: %v", corpusDir, err)
+// generatedEvidenceDir selects where generated test artifacts are written.
+// By default, output goes to the private Aether-Evidence directory adjacent to the repository.
+// Set AETHER_EVIDENCE_DIR to an absolute path to deliberately use another folder.
+func generatedEvidenceDir(t *testing.T, corpusName string) string {
+	t.Helper()
+
+	root := os.Getenv("AETHER_EVIDENCE_DIR")
+
+	if root == "" {
+		root = filepath.Join("..", "..", "Aether-Evidence")
+	} else if !filepath.IsAbs(root) {
+		t.Fatalf(
+			"AETHER_EVIDENCE_DIR must be an absolute path; got %q",
+			root,
+		)
 	}
+
+	dir := filepath.Join(root, corpusName)
+
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		t.Fatalf("could not create corpus dir %q: %v", dir, err)
+	}
+
+	return dir
+}
+
+func TestAttackLabCore(t *testing.T) {
+	// Use the safe, configurable evidence-output location.
+	corpusDir := generatedEvidenceDir(t, filepath.Join("attack-lab", "core"))
 
 	scenarios := buildCoreScenarios()
 	results := make([]outcome, 0, len(scenarios))
@@ -247,7 +270,7 @@ func parseAndVerifyEvidence(raw string) (reasons []string, records []evidence.Ev
 func writeCoreCorpus(t *testing.T, dir string, results []outcome) {
 	t.Helper()
 
-	// --- day8-attack-lab.txt (human readable) ---
+	// --- attack-lab-core-report.txt (human readable) ---
 	var txt strings.Builder
 	txt.WriteString("Aether Attack Lab — Core Corpus — Actual Local Execution\n")
 	txt.WriteString("=========================================\n\n")
@@ -273,11 +296,11 @@ func writeCoreCorpus(t *testing.T, dir string, results []outcome) {
 		txt.WriteString("\n")
 	}
 
-	if err := os.WriteFile(filepath.Join(dir, "day8-attack-lab.txt"), []byte(txt.String()), 0o644); err != nil {
-		t.Fatalf("could not write day8-attack-lab.txt: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-core-report.txt"), []byte(txt.String()), 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-core-report.txt: %v", err)
 	}
 
-	// --- day8-scenario-corpus.json (structured) ---
+	// --- attack-lab-core-corpus.json (structured) ---
 	corpus := struct {
 		GeneratedAt    string    `json:"generated_at"`
 		TotalScenarios int       `json:"total_scenarios"`
@@ -311,11 +334,11 @@ func writeCoreCorpus(t *testing.T, dir string, results []outcome) {
 	if err != nil {
 		t.Fatalf("could not marshal corpus: %v", err)
 	}
-	if err := os.WriteFile(filepath.Join(dir, "day8-scenario-corpus.json"), corpusJSON, 0o644); err != nil {
-		t.Fatalf("could not write day8-scenario-corpus.json: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-core-corpus.json"), corpusJSON, 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-core-corpus.json: %v", err)
 	}
 
-	// --- day8-attack-lab.jsonl (one JSON object per line) ---
+	// --- attack-lab-core-results.jsonl (one JSON object per line) ---
 	var jsonl strings.Builder
 	for _, r := range results {
 		line, err := json.Marshal(r)
@@ -325,13 +348,13 @@ func writeCoreCorpus(t *testing.T, dir string, results []outcome) {
 		jsonl.Write(line)
 		jsonl.WriteByte('\n')
 	}
-	if err := os.WriteFile(filepath.Join(dir, "day8-attack-lab.jsonl"), []byte(jsonl.String()), 0o644); err != nil {
-		t.Fatalf("could not write day8-attack-lab.jsonl: %v", err)
+	if err := os.WriteFile(filepath.Join(dir, "attack-lab-core-results.jsonl"), []byte(jsonl.String()), 0o644); err != nil {
+		t.Fatalf("could not write attack-lab-core-results.jsonl: %v", err)
 	}
 }
 
 // ============================================================
-// Scenario table — DAY8-001 .. DAY8-020
+// Scenario table — AET-ATT-0001 .. AET-ATT-0020
 // ============================================================
 
 func buildCoreScenarios() []scenario {
@@ -341,7 +364,7 @@ func buildCoreScenarios() []scenario {
 	return []scenario{
 		// --- 001 valid baseline ---
 		{
-			ID:             "DAY8-001",
+			ID:             "AET-ATT-0001",
 			Name:           "valid baseline",
 			Category:       catBaseline,
 			Method:         http.MethodPost,
@@ -355,7 +378,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 002 wrong HTTP method ---
 		{
-			ID:             "DAY8-002",
+			ID:             "AET-ATT-0002",
 			Name:           "wrong HTTP method",
 			Category:       catMethod,
 			Method:         http.MethodGet,
@@ -369,7 +392,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 003 missing Authorization ---
 		{
-			ID:             "DAY8-003",
+			ID:             "AET-ATT-0003",
 			Name:           "missing Authorization",
 			Category:       catAuth,
 			Method:         http.MethodPost,
@@ -383,7 +406,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 004 unknown token ---
 		{
-			ID:             "DAY8-004",
+			ID:             "AET-ATT-0004",
 			Name:           "unknown token",
 			Category:       catAuth,
 			Method:         http.MethodPost,
@@ -397,7 +420,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 005 malformed JSON ---
 		{
-			ID:             "DAY8-005",
+			ID:             "AET-ATT-0005",
 			Name:           "malformed JSON",
 			Category:       catEnvelope,
 			Method:         http.MethodPost,
@@ -411,7 +434,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 006 missing IdentityRef ---
 		{
-			ID:         "DAY8-006",
+			ID:         "AET-ATT-0006",
 			Name:       "missing IdentityRef",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -427,7 +450,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 007 identity mismatch (VERIFIED: 401 + IDENTITY_MISMATCH) ---
 		{
-			ID:         "DAY8-007",
+			ID:         "AET-ATT-0007",
 			Name:       "identity mismatch",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -446,7 +469,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 008 missing NonceID ---
 		{
-			ID:         "DAY8-008",
+			ID:         "AET-ATT-0008",
 			Name:       "missing NonceID",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -462,7 +485,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 009 missing Capability ---
 		{
-			ID:         "DAY8-009",
+			ID:         "AET-ATT-0009",
 			Name:       "missing Capability",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -478,7 +501,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 010 missing TargetResource ---
 		{
-			ID:         "DAY8-010",
+			ID:         "AET-ATT-0010",
 			Name:       "missing TargetResource",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -494,7 +517,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 011 missing Operation ---
 		{
-			ID:         "DAY8-011",
+			ID:         "AET-ATT-0011",
 			Name:       "missing Operation",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -510,7 +533,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 012 expired envelope ---
 		{
-			ID:         "DAY8-012",
+			ID:         "AET-ATT-0012",
 			Name:       "expired envelope",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -530,7 +553,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 013 future IssuedAt ---
 		{
-			ID:         "DAY8-013",
+			ID:         "AET-ATT-0013",
 			Name:       "future IssuedAt",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,
@@ -550,7 +573,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 014 revoked identity ---
 		{
-			ID:         "DAY8-014",
+			ID:         "AET-ATT-0014",
 			Name:       "revoked identity",
 			Category:   catRevocation,
 			Method:     http.MethodPost,
@@ -567,7 +590,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 015 revoked nonce ---
 		{
-			ID:         "DAY8-015",
+			ID:         "AET-ATT-0015",
 			Name:       "revoked nonce",
 			Category:   catRevocation,
 			Method:     http.MethodPost,
@@ -584,7 +607,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 016 wrong target ---
 		{
-			ID:         "DAY8-016",
+			ID:         "AET-ATT-0016",
 			Name:       "wrong target",
 			Category:   catPolicy,
 			Method:     http.MethodPost,
@@ -602,7 +625,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 017 wrong operation ---
 		{
-			ID:         "DAY8-017",
+			ID:         "AET-ATT-0017",
 			Name:       "wrong operation",
 			Category:   catPolicy,
 			Method:     http.MethodPost,
@@ -620,7 +643,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 018 capability escalation ---
 		{
-			ID:         "DAY8-018",
+			ID:         "AET-ATT-0018",
 			Name:       "capability escalation",
 			Category:   catPolicy,
 			Method:     http.MethodPost,
@@ -638,7 +661,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 019 near-miss target ---
 		{
-			ID:         "DAY8-019",
+			ID:         "AET-ATT-0019",
 			Name:       "near-miss target",
 			Category:   catPolicy,
 			Method:     http.MethodPost,
@@ -657,7 +680,7 @@ func buildCoreScenarios() []scenario {
 
 		// --- 020 missing PayloadHash ---
 		{
-			ID:         "DAY8-020",
+			ID:         "AET-ATT-0020",
 			Name:       "missing PayloadHash",
 			Category:   catEnvelope,
 			Method:     http.MethodPost,

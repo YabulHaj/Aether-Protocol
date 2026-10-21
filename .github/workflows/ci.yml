@@ -31,6 +31,11 @@ jobs:
       - name: Run Go tests
         run: go test -count=1 -skip '^TestAuthorizationEnforcementBenchmark$' ./...
 
+      - name: Run authorization benchmark test
+        env:
+          AETHER_EVIDENCE_DIR: ${{ runner.temp }}/Aether-Evidence
+        run: go test -count=1 -v ./cmd -run '^TestAuthorizationEnforcementBenchmark$'
+
       - name: Run go vet
         run: go vet ./...
 

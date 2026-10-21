@@ -317,6 +317,14 @@ func defaultPolicy() policy.Policy {
 				TargetResource: "invoice/12345",
 				Operation:      "GET",
 			},
+			{
+				ID:             "R-CI-TEST-ALLOW-99999",
+				IdentityRef:    "agent://finance-bot-01",
+				Intent:         "summarize",
+				Capability:     "read:invoices",
+				TargetResource: "invoice/99999",
+				Operation:      "GET",
+			},
 		},
 	}
 }

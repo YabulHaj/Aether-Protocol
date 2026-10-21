@@ -1,0 +1,42 @@
+name: Aether CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Go checks and authorization boundary
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Go from go.mod
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run Go tests
+        run: go test -count=1 -skip '^TestAuthorizationEnforcementBenchmark$' ./...
+
+      - name: Run go vet
+        run: go vet ./...
+
+      - name: Build packages
+        run: go build ./...
+
+      - name: Verify live allow/deny enforcement
+        shell: bash
+        run: bash ./scripts/ci-smoke.sh

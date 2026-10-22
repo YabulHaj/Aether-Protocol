@@ -2,6 +2,8 @@
 
 ### Open-source authorization boundary for AI agents
 
+[![Aether CI](https://github.com/YabulHaj/Aether-Protocol/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/YabulHaj/Aether-Protocol/actions/workflows/ci.yml)
+
 **Identity is not authority.**
 
 **IDENTITY -> INTENT -> AUTHORITY -> ACTION -> EVIDENCE**
@@ -41,6 +43,7 @@ UNAUTHORIZED
 HTTP 403
 Backend hits: 0
 ```
+**Run it yourself:** [Quickstart](./QUICKSTART.md)
 
 The important question is not only whether Aether returned `403`.
 

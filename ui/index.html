@@ -300,16 +300,24 @@ function gateFlash(i){
 function ingest(raw){
   if(!raw || typeof raw!=='object') return;
 
-  const status = Number(raw.status);
+  const status = Number(raw.decision_status ?? raw.status);
 
-  const allowed =
-    raw.allowed === true ||
-    String(raw.allowed).toLowerCase() === 'true' ||
-    status === 200 ||
-    String(raw.result || '').toUpperCase() === 'ALLOWED' ||
-    String(raw.result || '').toUpperCase() === 'ALLOW' ||
-    String(raw.decision || '').toUpperCase() === 'ALLOWED' ||
-    String(raw.decision || '').toUpperCase() === 'ALLOW';
+  const hasExplicitAllowed =
+    typeof raw.allowed === 'boolean' ||
+    (typeof raw.allowed === 'string' &&
+      /^(true|false)$/i.test(raw.allowed.trim()));
+
+  const allowed = hasExplicitAllowed
+    ? (typeof raw.allowed === 'boolean'
+        ? raw.allowed
+        : raw.allowed.trim().toLowerCase() === 'true')
+    : (
+        status === 200 ||
+        String(raw.result || '').toUpperCase() === 'ALLOWED' ||
+        String(raw.result || '').toUpperCase() === 'ALLOW' ||
+        String(raw.decision || '').toUpperCase() === 'ALLOWED' ||
+        String(raw.decision || '').toUpperCase() === 'ALLOW'
+      );
 
   const evt={
     allowed,

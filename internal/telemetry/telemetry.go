@@ -9,18 +9,21 @@ const (
 	clientQueueSize    = 50
 )
 
-// Event contains the exact data the Aether Live UI needs to render the animation.
+// Event contains authorization-decision data for the Aether Live UI.
+// Status is a legacy alias for DecisionStatus. Neither field represents the
+// upstream HTTP response status; this event does not capture that response.
 type Event struct {
-	ScenarioID string `json:"scenario_id,omitempty"`
-	Identity   string `json:"identity"`
-	Intent     string `json:"intent"`
-	Capability string `json:"capability"`
-	Target     string `json:"target"`
-	Operation  string `json:"operation"`
-	Reason     string `json:"reason"`
-	Status     int    `json:"status"`
-	Hash       string `json:"hash"`
-	Allowed    bool   `json:"allowed"`
+	ScenarioID     string `json:"scenario_id,omitempty"`
+	Identity       string `json:"identity"`
+	Intent         string `json:"intent"`
+	Capability     string `json:"capability"`
+	Target         string `json:"target"`
+	Operation      string `json:"operation"`
+	Reason         string `json:"reason"`
+	Status         int    `json:"status"`
+	DecisionStatus int    `json:"decision_status,omitempty"`
+	Hash           string `json:"hash"`
+	Allowed        bool   `json:"allowed"`
 }
 
 // Broker manages the connections to the web browser.

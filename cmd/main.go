@@ -222,21 +222,21 @@ func (s *Server) actionHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Telemetry observes the decision without blocking
 	if s.Telemetry != nil {
+		decisionStatus := http.StatusForbidden
+		if loggedRec.Allowed {
+			decisionStatus = http.StatusOK
+		}
 		s.Telemetry.Broadcast(telemetry.Event{
-			Identity:   loggedRec.IdentityRef,
-			Intent:     env.Intent,
-			Capability: loggedRec.Capability,
-			Target:     loggedRec.TargetResource,
-			Operation:  loggedRec.Operation,
-			Reason:     loggedRec.ReasonCode,
-			Status: func() int {
-				if loggedRec.Allowed {
-					return http.StatusOK
-				}
-				return http.StatusForbidden
-			}(),
-			Hash:    loggedRec.TamperHash,
-			Allowed: loggedRec.Allowed,
+			Identity:       loggedRec.IdentityRef,
+			Intent:         env.Intent,
+			Capability:     loggedRec.Capability,
+			Target:         loggedRec.TargetResource,
+			Operation:      loggedRec.Operation,
+			Reason:         loggedRec.ReasonCode,
+			Status:         decisionStatus,
+			DecisionStatus: decisionStatus,
+			Hash:           loggedRec.TamperHash,
+			Allowed:        loggedRec.Allowed,
 		})
 	}
 

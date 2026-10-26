@@ -45,6 +45,8 @@ Backend hits: 0
 ```
 **Run it yourself:** [Quickstart](./QUICKSTART.md)
 
+**[Action-boundary contract and reproducible tests](./docs/ACTION_BOUNDARY_CONTRACT.md)** — run the strict reference-consumer tests and inspect their limits.
+
 The important question is not only whether Aether returned `403`.
 
 It is:
@@ -150,7 +152,7 @@ Current creator-controlled verification includes:
 
 ```text
 go test ./...        PASS
-go test -race ./...  PASS
+go test -race ./...  NOT RUN (compatible CGO/compiler setup unavailable in prior Windows validation)
 go vet ./...         PASS
 go build ./...       PASS
 ```

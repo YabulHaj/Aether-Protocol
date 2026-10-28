@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"log"
@@ -14,12 +15,12 @@ import (
 	"time"
 
 	"aether-protocol/internal/enforcement"
-	"aether-protocol/internal/envelope"
 	"aether-protocol/internal/evidence"
 	"aether-protocol/internal/identity"
 	"aether-protocol/internal/policy"
 	"aether-protocol/internal/revocation"
 	"aether-protocol/internal/telemetry"
+	"aether-protocol/pkg/actioncontract"
 )
 
 const (
@@ -112,8 +113,8 @@ func (s *Server) actionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var env envelope.ActionEnvelope
-	if err := json.Unmarshal(bodyBytes, &env); err != nil {
+	env, err := actioncontract.DecodeEnvelopeJSON(string(bodyBytes))
+	if err != nil {
 		s.logEvidenceAndWriteError(w, evidence.EvidenceRecord{
 			IdentityRef: verifiedIdentity,
 			ReasonCode:  evidence.ReasonMalformed,
@@ -199,6 +200,42 @@ func (s *Server) actionHandler(w http.ResponseWriter, r *http.Request) {
 	// 8. Policy Evaluation
 	decision := s.Policy.Evaluate(&env, now)
 
+	// Validate a supplied payload against the authorized outer action before forwarding.
+	if decision.Allow && env.Payload != "" {
+		_, payloadErr := actioncontract.ValidatePayload(
+			actioncontract.AuthorizedAction{
+				TargetResource: env.TargetResource,
+				Operation:      env.Operation,
+			},
+			env.Payload,
+		)
+		if payloadErr != nil {
+			status := http.StatusBadRequest
+			reason := evidence.ReasonMalformed
+			message := "invalid action payload"
+
+			if errors.Is(payloadErr, actioncontract.ErrActionMismatch) {
+				status = http.StatusConflict
+				reason = evidence.ReasonActionMismatch
+				message = "payload action conflicts with the authorized envelope"
+			}
+
+			s.logEvidenceAndWriteError(w, evidence.EvidenceRecord{
+				IdentityRef:    env.IdentityRef,
+				NonceID:        env.NonceID,
+				Intent:         env.Intent,
+				Capability:     env.Capability,
+				TargetResource: env.TargetResource,
+				Operation:      env.Operation,
+				PayloadHash:    env.PayloadHash,
+				Allowed:        false,
+				ReasonCode:     reason,
+				PolicyVersion:  decision.PolicyVersion,
+			}, status, message)
+			return
+		}
+	}
+
 	// 9. Write Structured Evidence
 	rec := evidence.EvidenceRecord{
 		IdentityRef:    env.IdentityRef,
@@ -263,14 +300,15 @@ func (s *Server) logEvidenceAndWriteError(w http.ResponseWriter, rec evidence.Ev
 
 	if s.Telemetry != nil {
 		s.Telemetry.Broadcast(telemetry.Event{
-			Identity:   loggedRec.IdentityRef,
-			Capability: loggedRec.Capability,
-			Target:     loggedRec.TargetResource,
-			Operation:  loggedRec.Operation,
-			Reason:     loggedRec.ReasonCode,
-			Status:     status,
-			Hash:       loggedRec.TamperHash,
-			Allowed:    false,
+			Identity:       loggedRec.IdentityRef,
+			Capability:     loggedRec.Capability,
+			Target:         loggedRec.TargetResource,
+			Operation:      loggedRec.Operation,
+			Reason:         loggedRec.ReasonCode,
+			Status:         status,
+			DecisionStatus: status,
+			Hash:           loggedRec.TamperHash,
+			Allowed:        false,
 		})
 	}
 

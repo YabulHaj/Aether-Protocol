@@ -121,14 +121,13 @@ func TestActionBoundaryContract_ConflictingPayloadRejectedBeforeEffect(t *testin
 
 	response := postWithAuth(t, srv, body, validAuthHeader)
 
-	// The outer action matches Aether's policy, so the gateway authorizes and
-	// forwards it. The downstream reference contract must reject the conflict.
+	// The gateway must reject a conflicting payload before forwarding it.
 	if response.Code != http.StatusConflict {
-		t.Fatalf("expected downstream HTTP 409 for action mismatch, got %d: %s", response.Code, response.Body.String())
+		t.Fatalf("expected gateway HTTP 409 for conflicting payload, got %d: %s", response.Code, response.Body.String())
 	}
 
-	if got := backend.RequestCount(); got != 1 {
-		t.Fatalf("expected one downstream request, got %d", got)
+	if got := backend.RequestCount(); got != 0 {
+		t.Fatalf("SECURITY REGRESSION: conflicting action reached downstream adapter %d times", got)
 	}
 	if got := backend.EffectCount(); got != 0 {
 		t.Fatalf("SECURITY REGRESSION: conflicting action caused %d simulated effects", got)
@@ -136,18 +135,62 @@ func TestActionBoundaryContract_ConflictingPayloadRejectedBeforeEffect(t *testin
 
 	select {
 	case event := <-events:
-		if !event.Allowed {
-			t.Fatal("expected Aether's outer authorization decision to remain ALLOW")
+		if event.Allowed {
+			t.Fatal("expected conflicting payload to be recorded as rejected")
 		}
-		if event.DecisionStatus != http.StatusOK || event.Status != http.StatusOK {
-			t.Fatalf("expected authorization decision status 200, got decision_status=%d status=%d",
-				event.DecisionStatus, event.Status)
+		if event.Status != http.StatusConflict {
+			t.Fatalf("expected rejection status 409, got %d", event.Status)
+		}
+		if event.DecisionStatus != http.StatusConflict {
+			t.Fatalf("expected DecisionStatus 409, got %d", event.DecisionStatus)
+		}
+		if event.Reason != "ACTION_MISMATCH" {
+			t.Fatalf("expected ACTION_MISMATCH telemetry reason, got %q", event.Reason)
 		}
 	case <-time.After(2 * time.Second):
-		t.Fatal("timed out waiting for Aether authorization telemetry")
+		t.Fatal("timed out waiting for Aether rejection telemetry")
 	}
 }
 
+func TestActionBoundaryContract_MalformedPayloadRejectedBeforeEffect(t *testing.T) {
+	srv, backend := newActionBoundaryContractTestServer(t)
+
+	events := srv.Telemetry.Subscribe()
+	defer srv.Telemetry.Unsubscribe(events)
+
+	payload := `{"target_resource":`
+	body := makeContractEnvelope(t, payload, nil)
+
+	response := postWithAuth(t, srv, body, validAuthHeader)
+	if response.Code != http.StatusBadRequest {
+		t.Fatalf("expected gateway HTTP 400 for malformed payload, got %d: %s", response.Code, response.Body.String())
+	}
+
+	if got := backend.RequestCount(); got != 0 {
+		t.Fatalf("SECURITY REGRESSION: malformed payload reached downstream adapter %d times", got)
+	}
+	if got := backend.EffectCount(); got != 0 {
+		t.Fatalf("SECURITY REGRESSION: malformed payload caused %d simulated effects", got)
+	}
+
+	select {
+	case event := <-events:
+		if event.Allowed {
+			t.Fatal("expected malformed payload to be recorded as rejected")
+		}
+		if event.Status != http.StatusBadRequest {
+			t.Fatalf("expected rejection status 400, got %d", event.Status)
+		}
+		if event.DecisionStatus != http.StatusBadRequest {
+			t.Fatalf("expected DecisionStatus 400, got %d", event.DecisionStatus)
+		}
+		if event.Reason != "MALFORMED" {
+			t.Fatalf("expected MALFORMED telemetry reason, got %q", event.Reason)
+		}
+	case <-time.After(2 * time.Second):
+		t.Fatal("timed out waiting for malformed-payload rejection telemetry")
+	}
+}
 func TestActionBoundaryContract_NonCanonicalOuterKeyRejectedBeforeEffect(t *testing.T) {
 	srv, backend := newActionBoundaryContractTestServer(t)
 
@@ -160,8 +203,7 @@ func TestActionBoundaryContract_NonCanonicalOuterKeyRejectedBeforeEffect(t *test
 		t.Fatalf("expected one canonical outer target field, got %d", strings.Count(raw, needle))
 	}
 
-	// The canonical field remains present and authorizes the outer action.
-	// The reference consumer must reject the additional case-variant field.
+	// The gateway must reject an ambiguous outer envelope before forwarding.
 	raw = strings.Replace(
 		raw,
 		needle,
@@ -171,17 +213,18 @@ func TestActionBoundaryContract_NonCanonicalOuterKeyRejectedBeforeEffect(t *test
 
 	response := postWithAuth(t, srv, []byte(raw), validAuthHeader)
 	if response.Code != http.StatusBadRequest {
-		t.Fatalf("expected strict downstream envelope rejection (400), got %d: %s",
+		t.Fatalf("expected gateway HTTP 400 for ambiguous outer envelope, got %d: %s",
 			response.Code, response.Body.String())
 	}
 
-	if got := backend.RequestCount(); got != 1 {
-		t.Fatalf("expected gateway to contact the reference adapter once, got %d", got)
+	if got := backend.RequestCount(); got != 0 {
+		t.Fatalf("SECURITY REGRESSION: ambiguous outer envelope reached downstream adapter %d times", got)
 	}
 	if got := backend.EffectCount(); got != 0 {
-		t.Fatalf("SECURITY REGRESSION: ambiguous outer envelope produced %d effects", got)
+		t.Fatalf("SECURITY REGRESSION: ambiguous outer envelope caused %d simulated effects", got)
 	}
 }
+
 func TestActionBoundaryContract_OuterPolicyDenialNeverReachesAdapter(t *testing.T) {
 	srv, backend := newActionBoundaryContractTestServer(t)
 

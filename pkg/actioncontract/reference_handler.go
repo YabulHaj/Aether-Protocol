@@ -193,6 +193,13 @@ func decodeEnvelopeJSON(raw string) (envelope.ActionEnvelope, error) {
 
 	return env, nil
 }
+
+// DecodeEnvelopeJSON parses an action envelope using the strict JSON checks
+// shared with the reference handler. It rejects duplicate keys, unknown or
+// non-canonical fields, malformed JSON, and trailing JSON values.
+func DecodeEnvelopeJSON(raw string) (envelope.ActionEnvelope, error) {
+	return decodeEnvelopeJSON(raw)
+}
 func writeJSON(w http.ResponseWriter, status int, body interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)

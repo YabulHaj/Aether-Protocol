@@ -18,6 +18,7 @@ const (
 	ReasonRevoked          = "REVOKED"
 	ReasonReplay           = "REPLAY_DETECTED"
 	ReasonMalformed        = "MALFORMED"
+	ReasonActionMismatch   = "ACTION_MISMATCH"
 	ReasonIdentityInvalid  = "IDENTITY_INVALID"
 	ReasonIdentityMismatch = "IDENTITY_MISMATCH"
 	ReasonMethodNotAllowed = "METHOD_NOT_ALLOWED"
